@@ -16,12 +16,17 @@ import Layout from '../layouts/Layout.astro';
 				spellcheck="false"
 				autocomplete="off"
 			/>
-			<input id="dots-toggle" class="test-top-input__toggle" type="checkbox" />
+			<input id="dots-toggle" class="test-top-input__toggle" type="checkbox" checked />
 		</div>
 		<section class="test-inner">
 		</section>
 	</main>
 </Layout>
+
+<script is:inline>
+	// Only on /test: visually merge scroll dots into the dots canvas.
+	document.documentElement.classList.add('is-test-dots');
+</script>
 
 <style>
 	.test-page {
@@ -93,5 +98,19 @@ import Layout from '../layouts/Layout.astro';
 		margin: 0;
 		font-size: clamp(28px, 4vw, 44px);
 		letter-spacing: -0.03em;
+	}
+</style>
+
+<style>
+	/* Only on /test: keep scroll dots clickable but invisible (canvas will draw them) */
+	:global(.is-test-dots #scroll-dots) {
+		background: none;
+	}
+
+	:global(.is-test-dots #scroll-dots .scroll-dot) {
+		background: transparent !important;
+		/* Keep them clickable without visible UI */
+		opacity: 0;
+		transform: none !important;
 	}
 </style>

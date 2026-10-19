@@ -2,7 +2,7 @@
 
 This project publishes a **static** Astro build to GitHub Pages using **GitHub Actions**. The live site URL is:
 
-**https://ps3coder.github.io/portfolio/**
+**https://pankaj-psh.github.io/portfolio/**
 
 ## Why `site` and `base` matter
 
@@ -10,7 +10,7 @@ GitHub serves project sites at `https://<user>.github.io/<repo>/`. This reposito
 
 In `astro.config.mjs`:
 
-- `site: 'https://ps3coder.github.io'` — canonical origin for sitemap, RSS, and absolute URLs.
+- `site: 'https://pankaj-psh.github.io'` — canonical origin for sitemap, RSS, and absolute URLs.
 - `base: '/portfolio'` — prefixes client asset paths (`/_astro/...`, public files) so the site works under that subpath.
 
 If you **rename the repository**, update `base` (and optionally `site`) to match the new repo name, then redeploy.
@@ -19,7 +19,7 @@ Public assets and links that must work on Pages should use `import.meta.env.BASE
 
 ## One-time GitHub setup
 
-1. **Repository** — Use a **public** repo named `portfolio` under `ps3coder` (or change `base` / `site` to match your user and repo name).
+1. **Repository** — Use a **public** repo named `portfolio` under `pankaj-psh` (or change `base` / `site` to match your user and repo name).
 2. **Pages** — **Settings → Pages → Build and deployment → Source:** **GitHub Actions** (not “Deploy from a branch” only). Until this is set, the deploy job can fail with **404** / “Ensure GitHub Pages has been enabled”.
 3. **Actions permissions** — **Settings → Actions → General → Workflow permissions:** allow **Read and write** if deploy still fails due to token permissions.
 
@@ -38,7 +38,7 @@ The **build** job must succeed (Astro outputs to `dist/`). The **deploy** job pu
 
 1. **Actions** — Latest run shows green **build** and **deploy**.
 2. **Deployments** — `github-pages` environment shows a successful deployment.
-3. **Browser** — Open https://ps3coder.github.io/portfolio/ (hard refresh if you see an old cache).
+3. **Browser** — Open https://pankaj-psh.github.io/portfolio/ (hard refresh if you see an old cache).
 
 ## Common issues
 

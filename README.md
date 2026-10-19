@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio site built with [Astro](https://astro.build). Production build is deployed to **GitHub Pages** at [https://ps3coder.github.io/portfolio/](https://ps3coder.github.io/portfolio/).
+Personal portfolio site built with [Astro](https://astro.build). Production build is deployed to **GitHub Pages** at [https://pankaj-psh.github.io/portfolio/](https://pankaj-psh.github.io/portfolio/).
 
 ## Requirements
 

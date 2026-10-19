@@ -114,7 +114,7 @@
 		"outreachPrefix": "If you'd like to discuss a project, collaboration, or opportunity, feel free to reach out at",
 		"email": "ps3threee@email.com",
 		"social": [
-			{ "label": "GitHub", "href": "https://github.com/yourusername" },
+			{ "label": "GitHub", "href": "https://github.com/pankaj-psh" },
 			{ "label": "LinkedIn", "href": "https://www.linkedin.com/in/yourusername" }
 		],
 		"resume": { "label": "Resume", "file": "resume.pdf" },

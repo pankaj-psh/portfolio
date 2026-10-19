@@ -52,6 +52,9 @@ function initDotsPage() {
   var typedText = '';
   var raf = null;
   var dotsOn = false;
+  var scrollDotsNav = null;
+  var scrollDotButtons = null;
+  var scrollActiveColor = '#f59794';
 
   // 5x7 dot font (A-Z, 0-9, space). Each char is 7 rows, 5 columns.
   var FONT_5X7 = {
@@ -189,6 +192,25 @@ function initDotsPage() {
 
     if (dotsOn) drawTextDots(typedText, w, h);
 
+    // On /test: draw the right-side scroll indicator dots into the canvas
+    // so the "sidebar" becomes part of the grid (buttons stay clickable but invisible).
+    if (scrollDotsNav && scrollDotButtons && scrollDotButtons.length) {
+      for (var si = 0; si < scrollDotButtons.length; si++) {
+        var btn = scrollDotButtons[si];
+        if (!btn || !btn.getBoundingClientRect) continue;
+        var r = btn.getBoundingClientRect();
+        // Center of the button in viewport coordinates.
+        var cx = r.left + r.width / 2;
+        var cy = r.top + r.height / 2;
+        if (cx < -50 || cy < -50 || cx > w + 50 || cy > h + 50) continue;
+        var isActive = btn.classList && btn.classList.contains('active');
+        ctx.fillStyle = isActive ? scrollActiveColor : baseColor;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
     if (!dotsOn) return;
     if (mouseX == null || mouseY == null) return;
 
@@ -252,6 +274,23 @@ function initDotsPage() {
     });
   }
 
+  function bindScrollDots() {
+    // Only draw/merge on the /test page, to avoid changing other pages.
+    if (!root.classList.contains('is-test-dots')) return;
+    scrollDotsNav = document.getElementById('scroll-dots');
+    if (!scrollDotsNav) return;
+    scrollDotButtons = scrollDotsNav.querySelectorAll('.scroll-dot');
+    // Keep canvas in sync with active dot animation.
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!hasDotsPage()) return;
+        requestDraw();
+      },
+      { passive: true }
+    );
+  }
+
   window.addEventListener(
     'mousemove',
     function (e) {
@@ -292,6 +331,7 @@ function initDotsPage() {
   enableIfNeeded();
   bindInput();
   bindToggle();
+  bindScrollDots();
 }
 
 if (document.readyState === 'loading') {
