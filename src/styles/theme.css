@@ -8,8 +8,11 @@
  */
 
 :root {
-	/* Light theme (default) */
-	--color-bg: #fbfbfb;
+	/* Light theme (default) — Figma Desktop - 1 */
+	--color-bg-start: #EBF3FA;
+	--color-bg-end: #F7ECE1;
+	--color-bg: #EBF3FA;
+	--bg-gradient: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 	--color-ink: #0a0a0a;
 	--color-muted: rgba(0, 0, 0, 0.65);
 	--color-link: #0000ff;
@@ -80,6 +83,8 @@
 	--shadow-2: 0 45px 90px rgba(0, 0, 0, 0.08);
 }
 
+/* Keep white/light default for now (dark mode can be reintroduced when ready) */
+/*
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]):not([data-theme="soft"]):not([data-theme="gray"]):not([data-theme="dim"]) {
 		--color-bg: #0a0a0a;
@@ -94,3 +99,5 @@
 		--shadow-2: 0 45px 90px rgba(0, 0, 0, 0.35);
 	}
 }
+*/
+

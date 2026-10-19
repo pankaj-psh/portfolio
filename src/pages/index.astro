@@ -1,22 +1,25 @@
 ---
 /**
  * Main Home Page
- * Clean foundation ready for new portfolio design.
+ * Frame: 1440px x 6144px (matching Figma Desktop - 1)
  */
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<main class="page-container">
-		<!-- New design content will be placed here -->
+	<main class="page-canvas">
+		<!-- Ready for Figma sections -->
 	</main>
 </Layout>
 
 <style>
-	.page-container {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
+	.page-canvas {
 		width: 100%;
+		max-width: 1440px;
+		min-height: 6144px;
+		margin: 0 auto;
+		position: relative;
+		box-sizing: border-box;
+		background: transparent !important;
 	}
 </style>
