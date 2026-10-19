@@ -4,11 +4,31 @@
  * Frame: 1440px x 6144px (matching Figma Desktop - 1)
  */
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import dropDownArrow from '../assets/icon/drop-down-arrow.svg';
+import lightThemeIcon from '../assets/icon/light-theme.svg';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
 ---
 
 <Layout>
 	<main class="page-canvas">
-		<!-- Ready for Figma sections -->
+		<header class="site-header">
+			<a href={baseUrl} class="brand-logo" aria-label="Pankaj Sharma Home">pankaj-psh/portfolio</a>
+
+			<nav class="header-nav" aria-label="Main Navigation">
+				<button type="button" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+					<span class="menu-label">Menu</span>
+					<Image src={dropDownArrow} alt="" width={23} height={23} loading="eager" class="menu-icon" />
+				</button>
+
+				<button type="button" class="theme-btn" aria-label="Toggle theme">
+					<Image src={lightThemeIcon} alt="Light theme" width={23} height={23} loading="eager" class="theme-icon" />
+				</button>
+			</nav>
+		</header>
 	</main>
 </Layout>
 
@@ -21,5 +41,153 @@ import Layout from '../layouts/Layout.astro';
 		position: relative;
 		box-sizing: border-box;
 		background: transparent !important;
+	}
+
+	.site-header {
+		position: absolute;
+		top: 72px;
+		left: 0;
+		width: 100%;
+		padding-left: 200px;
+		padding-right: 177px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+	}
+
+	a.brand-logo {
+		font-family: 'Courier Prime', monospace;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 22px;
+		letter-spacing: 0;
+		color: #000000 !important;
+		text-decoration: none !important;
+		display: inline-block;
+		transition: opacity 0.2s ease;
+	}
+
+	a.brand-logo:hover {
+		opacity: 0.75;
+		text-decoration: none !important;
+	}
+
+	.header-nav {
+		display: flex;
+		align-items: center;
+		gap: 67px;
+	}
+
+	.menu-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		color: inherit;
+		transition: opacity 0.2s ease;
+	}
+
+	.menu-btn:hover {
+		opacity: 0.75;
+	}
+
+	.menu-label {
+		font-family: 'Jost', sans-serif;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 29px;
+		color: #000000;
+		letter-spacing: 0;
+	}
+
+	.menu-icon {
+		width: 23px;
+		height: 23px;
+		display: block;
+	}
+
+	.theme-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.theme-btn:hover {
+		opacity: 0.75;
+		transform: rotate(15deg);
+	}
+
+	.theme-icon {
+		width: 23px;
+		height: 23px;
+		display: block;
+	}
+
+	/* Responsive scaling for viewports below 1440px */
+	@media (max-width: 1440px) {
+		.site-header {
+			top: clamp(24px, 5vw, 72px);
+			padding-left: clamp(20px, 13.88vw, 200px);
+			padding-right: clamp(20px, 12.29vw, 177px);
+		}
+		.header-nav {
+			gap: clamp(24px, 4.65vw, 67px);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.site-header {
+			top: 20px;
+			padding-left: 16px;
+			padding-right: 28px; /* Safe clearance from right scroll dots */
+		}
+		a.brand-logo {
+			font-size: 15px;
+			line-height: 18px;
+			white-space: nowrap;
+		}
+		.menu-label {
+			font-size: 16px;
+			line-height: 20px;
+		}
+		.menu-icon,
+		.theme-icon {
+			width: 20px;
+			height: 20px;
+		}
+		.header-nav {
+			gap: 14px;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.site-header {
+			top: 18px;
+			padding-left: 12px;
+			padding-right: 26px;
+		}
+		a.brand-logo {
+			font-size: 13.5px;
+		}
+		.menu-label {
+			font-size: 15px;
+		}
+		.menu-icon,
+		.theme-icon {
+			width: 18px;
+			height: 18px;
+		}
+		.header-nav {
+			gap: 10px;
+		}
 	}
 </style>
