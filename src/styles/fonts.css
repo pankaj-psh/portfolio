@@ -1,0 +1,63 @@
+/**
+ * Local self-hosted font definitions
+ * Eliminates render-blocking external Google Font network requests and FOUT.
+ */
+
+/* Cormorant Garamond */
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../assets/fonts/cormorant-garamond-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../assets/fonts/cormorant-garamond-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../assets/fonts/cormorant-garamond-600-normal.woff2') format('woff2');
+}
+
+/* Courier Prime */
+@font-face {
+	font-family: 'Courier Prime';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../assets/fonts/courier-prime-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Courier Prime';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../assets/fonts/courier-prime-700-normal.woff2') format('woff2');
+}
+
+/* Jost */
+@font-face {
+	font-family: 'Jost';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../assets/fonts/jost-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Jost';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../assets/fonts/jost-500-normal.woff2') format('woff2');
+}

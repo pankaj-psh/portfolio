@@ -1,5 +1,14 @@
 {
 	"meta": {
 		"title": "Pankaj Sharma"
+	},
+	"hero": {
+		"greeting": "Hi, I'm Pankaj",
+		"name": "Sharma.",
+		"bio": "Based in  Ahmedabad 🇮🇳 ,\nI build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next."
+	},
+	"aboutShort": {
+		"p1": "Making things work smoothly behind the scenes, learning something new everyday, and figuring out software architecture is what the routine looks like—driven by a genuine curiosity for how things tick.",
+		"p2": "Spanning DevOps, Git workflows, and personal projects, the day-to-day toolkit leans on Python, JSON, automation, and hands-on building"
 	}
 }

@@ -1,0 +1,47 @@
+---
+/**
+ * AboutShort Component — Short Bio Paragraphs and Aligned Separator
+ */
+import site from '../data/site.json';
+import '../styles/about.css';
+---
+
+<section class="about-section" aria-label="About Pankaj Sharma">
+	<p class="about-text">
+		{site.aboutShort.p1}
+	</p>
+	<p class="about-text">
+		{site.aboutShort.p2}
+	</p>
+</section>
+
+<div class="about-divider" aria-hidden="true"></div>
+
+<script is:inline>
+	function syncAboutDivider() {
+		const themeBtn = document.querySelector('.theme-btn');
+		const logo = document.querySelector('.brand-logo');
+		const divider = document.querySelector('.about-divider');
+		const section = document.querySelector('.about-section');
+		const canvas = document.querySelector('.page-canvas');
+		if (!canvas) return;
+
+		const canvasRect = canvas.getBoundingClientRect();
+		if (themeBtn) {
+			const themeRect = themeBtn.getBoundingClientRect();
+			const rightOffset = Math.max(0, canvasRect.right - themeRect.right);
+			if (divider) divider.style.right = `${rightOffset}px`;
+			if (section) section.style.right = `${rightOffset}px`;
+		}
+		if (logo && divider) {
+			const logoRect = logo.getBoundingClientRect();
+			const leftOffset = Math.max(0, logoRect.left - canvasRect.left);
+			divider.style.left = `${leftOffset}px`;
+		}
+	}
+
+	window.addEventListener('resize', syncAboutDivider);
+	window.addEventListener('load', syncAboutDivider);
+	document.addEventListener('DOMContentLoaded', syncAboutDivider);
+	syncAboutDivider();
+</script>

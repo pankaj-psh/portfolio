@@ -1,0 +1,28 @@
+---
+/**
+ * Header Component — Logo, Navigation Menu, and Theme Toggle
+ */
+import { Image } from 'astro:assets';
+import dropDownArrow from '../assets/icon/drop-down-arrow.svg';
+import lightThemeIcon from '../assets/icon/light-theme.svg';
+import '../styles/header.css';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
+---
+
+<header class="site-header">
+	<a href={baseUrl} class="brand-logo" aria-label="Pankaj Sharma Home">pankaj-psh/portfolio</a>
+
+	<nav class="header-nav" aria-label="Main Navigation">
+		<button type="button" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+			<span class="menu-label">Menu</span>
+			<Image src={dropDownArrow} alt="" width={23} height={23} loading="eager" class="menu-icon" />
+		</button>
+
+		<button type="button" class="theme-btn" aria-label="Toggle theme">
+			<Image src={lightThemeIcon} alt="Light theme" width={23} height={23} loading="eager" class="theme-icon" />
+		</button>
+	</nav>
+</header>

@@ -1,0 +1,64 @@
+---
+/**
+ * Hero Component — Greeting, Bio, Live IST Clock, and Separator
+ */
+import site from '../data/site.json';
+import '../styles/hero.css';
+---
+
+<section class="hero-section" aria-label="Introduction">
+	<h1 class="hero-headline">
+		{site.hero.greeting}<br />{site.hero.name}
+	</h1>
+	<p class="hero-bio">
+		{site.hero.bio}
+	</p>
+	<div class="hero-time-wrap">
+		<time id="ist-clock" class="hero-time" aria-label="Current time in Indian Standard Time">--:--:-- IST</time>
+	</div>
+</section>
+
+<div class="hero-divider" aria-hidden="true"></div>
+
+<script is:inline>
+	function updateIstClock() {
+		const clock = document.getElementById('ist-clock');
+		if (!clock) return;
+		const now = new Date();
+		const formatted = now.toLocaleTimeString('en-GB', {
+			timeZone: 'Asia/Kolkata',
+			hour12: false,
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+		});
+		clock.textContent = `${formatted} IST`;
+	}
+	updateIstClock();
+	setInterval(updateIstClock, 1000);
+
+	function syncDivider() {
+		const themeBtn = document.querySelector('.theme-btn');
+		const logo = document.querySelector('.brand-logo');
+		const divider = document.querySelector('.hero-divider');
+		const canvas = document.querySelector('.page-canvas');
+		if (!divider || !canvas) return;
+
+		const canvasRect = canvas.getBoundingClientRect();
+		if (themeBtn) {
+			const themeRect = themeBtn.getBoundingClientRect();
+			const rightOffset = Math.max(0, canvasRect.right - themeRect.right);
+			divider.style.right = `${rightOffset}px`;
+		}
+		if (logo) {
+			const logoRect = logo.getBoundingClientRect();
+			const leftOffset = Math.max(0, logoRect.left - canvasRect.left);
+			divider.style.left = `${leftOffset}px`;
+		}
+	}
+
+	window.addEventListener('resize', syncDivider);
+	window.addEventListener('load', syncDivider);
+	document.addEventListener('DOMContentLoaded', syncDivider);
+	syncDivider();
+</script>
