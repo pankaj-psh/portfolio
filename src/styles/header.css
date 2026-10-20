@@ -28,6 +28,10 @@ a.brand-logo:hover {
 	text-decoration: none !important;
 }
 
+.logo-break {
+	display: none;
+}
+
 .header-nav {
 	display: flex;
 	align-items: center;
@@ -101,14 +105,16 @@ a.brand-logo:hover {
 
 @media (max-width: 640px) {
 	.site-header {
-		top: 20px;
-		padding-left: 16px;
+		top: clamp(64px, 16vw, 74px);
+		padding-left: 18px;
 		padding-right: 28px; /* Safe clearance from right scroll dots */
+	}
+	.logo-break {
+		display: block;
 	}
 	a.brand-logo {
 		font-size: 15px;
-		line-height: 18px;
-		white-space: nowrap;
+		line-height: 1.15;
 	}
 	.menu-label {
 		font-size: 16px;
@@ -126,12 +132,13 @@ a.brand-logo:hover {
 
 @media (max-width: 400px) {
 	.site-header {
-		top: 18px;
-		padding-left: 12px;
+		top: 72px;
+		padding-left: 14px;
 		padding-right: 26px;
 	}
 	a.brand-logo {
-		font-size: 13.5px;
+		font-size: 14px;
+		line-height: 1.15;
 	}
 	.menu-label {
 		font-size: 15px;
@@ -142,6 +149,6 @@ a.brand-logo:hover {
 		height: 18px;
 	}
 	.header-nav {
-		gap: 10px;
+		gap: 12px;
 	}
 }
