@@ -55,8 +55,8 @@
 
 @media (max-width: 640px) {
 	.about-section {
-		top: calc(100vh + 36px);
-		top: calc(100dvh + 36px);
+		top: calc(100vh + clamp(200px, 26vh, 250px));
+		top: calc(100dvh + clamp(200px, 26vh, 250px));
 		left: 20px;
 		right: 28px;
 		width: calc(100% - 48px);
@@ -79,8 +79,8 @@
 
 @media (max-width: 400px) {
 	.about-section {
-		top: calc(100vh + 32px);
-		top: calc(100dvh + 32px);
+		top: calc(100vh + clamp(190px, 25vh, 240px));
+		top: calc(100dvh + clamp(190px, 25vh, 240px));
 		left: 18px;
 		right: 28px;
 		width: calc(100% - 46px);
