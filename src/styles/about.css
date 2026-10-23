@@ -1,7 +1,24 @@
+/* About heading */
+.about-heading {
+	margin: 0;
+	position: absolute;
+	top: 980px;
+	left: 200px;
+	font-family: 'Jost', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.35;
+	letter-spacing: 0;
+	color: #000000;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
 /* About section (Short preview) */
 .about-section {
 	position: absolute;
-	top: 880px;
+	top: 980px;
 	right: 177px;
 	width: 609px;
 	max-width: calc(100% - 220px);
@@ -12,20 +29,21 @@
 	margin: 0;
 	font-family: 'Courier Prime', monospace;
 	font-weight: 400;
-	font-size: 19px;
+	font-size: 24px;
 	line-height: 1.35;
 	letter-spacing: 0;
 	color: #000000;
 	white-space: pre-line;
+	overflow-wrap: break-word;
 }
 
-.about-text + .about-text {
-	margin-top: 22px;
+.about-text+.about-text {
+	margin-top: 24px;
 }
 
 .about-divider {
 	position: absolute;
-	top: 1230px;
+	top: 1580px;
 	left: 200px;
 	right: 177px;
 	height: 1px;
@@ -34,26 +52,39 @@
 
 /* Responsive scaling for viewports below 1440px */
 @media (max-width: 1440px) {
+	.about-heading {
+		top: clamp(610px, 68vw, 980px);
+		left: clamp(20px, 13.88vw, 200px);
+		font-size: clamp(14px, 1.39vw, 20px);
+	}
+
 	.about-section {
-		top: clamp(550px, 61vw, 880px);
+		top: clamp(610px, 68vw, 980px);
 		right: clamp(20px, 12.29vw, 177px);
 		left: auto;
 		width: min(609px, calc(100% - clamp(40px, 15vw, 220px)));
 	}
+
 	.about-text {
-		font-size: clamp(12.5px, 1.32vw, 19px);
+		font-size: clamp(16px, 1.67vw, 24px);
 	}
-	.about-text + .about-text {
-		margin-top: clamp(15px, 1.53vw, 22px);
+
+	.about-text+.about-text {
+		margin-top: clamp(16px, 1.67vw, 24px);
 	}
+
 	.about-divider {
-		top: clamp(700px, 85.4vw, 1230px);
+		top: clamp(980px, 110vw, 1580px);
 		left: clamp(20px, 13.88vw, 200px);
 		right: clamp(20px, 12.29vw, 177px);
 	}
 }
 
 @media (max-width: 640px) {
+	.about-heading {
+		display: none;
+	}
+
 	.about-section {
 		top: calc(100vh + clamp(200px, 26vh, 250px));
 		top: calc(100dvh + clamp(200px, 26vh, 250px));
@@ -62,13 +93,16 @@
 		width: calc(100% - 48px);
 		max-width: calc(100% - 48px);
 	}
+
 	.about-text {
 		font-size: 15px;
 		line-height: 1.45;
 	}
-	.about-text + .about-text {
+
+	.about-text+.about-text {
 		margin-top: 20px;
 	}
+
 	.about-divider {
 		top: calc(200vh - 36px);
 		top: calc(200dvh - 36px);
@@ -86,9 +120,11 @@
 		width: calc(100% - 46px);
 		max-width: calc(100% - 46px);
 	}
+
 	.about-text {
 		font-size: 14px;
 	}
+
 	.about-divider {
 		top: calc(200vh - 32px);
 		top: calc(200dvh - 32px);
