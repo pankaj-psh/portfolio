@@ -11,5 +11,38 @@
 		"title": "About",
 		"p1": "Making things work smoothly behind the scenes, learning something new everyday, and figuring out software architecture is what the routine looks like—driven by a genuine curiosity for how things tick.",
 		"p2": "Spanning DevOps, Git workflows, and personal projects, the day-to-day toolkit leans on Python, JSON, automation, and hands-on building"
+	},
+	"workSection": {
+		"title": "Work",
+		"intro": "I focus on reliable production software—from multi-portal architecture and automated deployments to processing and managing large-scale data workflows.",
+		"categories": [
+			{ "id": "01", "name": "Professional Contributions" },
+			{ "id": "02", "name": "Learning Projects" },
+			{ "id": "03", "name": "Data Operations & Analytics" },
+			{ "id": "04", "name": "Technical Writing & System Docs" }
+		]
+	},
+	"experienceSection": {
+		"title": "Experience",
+		"items": [
+			{
+				"id": "01",
+				"role": "Jr. Python Developer",
+				"period": "Jan '26 - Present",
+				"description": "As a Jr. Python Developer at Size Metrics Design & Engineering, I'm focused on building and improving in-house softwares, developing backend solutions, and making everyday workflows more reliable."
+			},
+			{
+				"id": "02",
+				"role": "Full Stack Developer Intern",
+				"period": "Jun '25 - Nov '25",
+				"description": "At SNB Innovations, I moved into full-stack development, working on frontend interfaces and backend systems."
+			},
+			{
+				"id": "03",
+				"role": "DevOps Intern",
+				"period": "Jun '24 - Sep '24",
+				"description": "I started as a DevOps Intern at Sahana System Limited, getting hands-on with cloud infrastructure and deployment automation."
+			}
+		]
 	}
 }
