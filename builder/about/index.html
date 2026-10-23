@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Studio — About Page Only</title>
+  <link rel="stylesheet" href="about.css" />
+  <script src="../shared/studio.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Studio Bar -->
+  <header class="studio-topbar">
+    <div class="studio-topbar-title">
+      <span>UI STUDIO</span>
+      <span class="studio-badge-pill">Local Tooling</span>
+    </div>
+
+    <nav class="studio-topbar-links">
+      <a href="../main/" class="studio-nav-btn">Main Page (All)</a>
+      <a href="../about/" class="studio-nav-btn active">About Page</a>
+    </nav>
+
+    <div class="studio-actions">
+      <span style="font-size:11px; color:var(--studio-muted);">Click to select • Double-click to edit • Arrow keys to nudge</span>
+    </div>
+  </header>
+
+  <!-- Live Editable Canvas -->
+  <main class="page-canvas">
+
+    <!-- Header Navigation -->
+    <header class="site-header studio-selectable" data-selector="site-header">
+      <a href="#" class="brand-logo">pankaj-psh/portfolio</a>
+      <nav class="header-nav">
+        <span class="menu-label">Menu</span>
+        <img src="/assets/icon/drop-down-arrow.svg" alt="" width="20" height="20" style="vertical-align: middle;" />
+        <img src="/assets/icon/light-theme.svg" alt="" width="22" height="22" style="vertical-align: middle; margin-left: 8px;" />
+      </nav>
+    </header>
+
+    <!-- Top Divider -->
+    <div class="page-top-divider studio-selectable" data-selector="page-top-divider"></div>
+
+    <!-- About Dedicated Content -->
+    <h1 class="about-page-title studio-selectable" data-selector="about-page-title">About Me</h1>
+
+    <section class="about-page-content studio-selectable" data-selector="about-page-content">
+      <p class="about-page-text studio-selectable" data-selector="about-page-text">Making things work smoothly behind the scenes, learning something new everyday, and figuring out software architecture is what the routine looks like—driven by a genuine curiosity for how things tick.</p>
+      <p class="about-page-text studio-selectable" data-selector="about-page-text">Spanning DevOps, Git workflows, and personal projects, the day-to-day toolkit leans on Python, JSON, automation, and hands-on building</p>
+    </section>
+
+    <!-- Bottom Divider -->
+    <div class="about-page-divider studio-selectable" data-selector="about-page-divider"></div>
+
+  </main>
+
+</body>
+</html>

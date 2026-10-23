@@ -1,0 +1,156 @@
+/* Main Page Styles (builder/main/main.css) */
+@import '../shared/studio.css';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(180deg, #EBF3FA 0%, #F7ECE1 100%);
+  color: #0a0a0a;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.page-canvas {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 2400px;
+  margin: 0 auto;
+  position: relative;
+  background: transparent;
+  padding-top: 0;
+}
+
+/* Header */
+.site-header {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  padding-left: 200px;
+  padding-right: 177px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  font-family: 'Courier Prime', monospace;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+}
+
+.menu-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* Hero Section */
+.hero-section {
+  position: absolute;
+  top: 206px;
+  left: 200px;
+  width: 932px;
+  max-width: calc(100% - 220px);
+}
+
+.hero-headline {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 106px;
+  line-height: 0.95;
+  color: #000000;
+}
+
+.hero-bio {
+  margin-top: 32px;
+  margin-bottom: 0;
+  width: 429px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 23.5px;
+  line-height: 1.25;
+  color: #000000;
+  white-space: pre-line;
+}
+
+.hero-time {
+  margin-top: 24px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: #000000;
+}
+
+/* Hero Divider */
+.hero-divider {
+  position: absolute;
+  top: 790px;
+  left: 200px;
+  right: 177px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* About Section */
+.about-heading {
+  margin: 0;
+  position: absolute;
+  top: 980px;
+  left: 200px;
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.about-section {
+  position: absolute;
+  top: 980px;
+  right: 177px;
+  width: 609px;
+  max-width: calc(100% - 220px);
+}
+
+.about-text {
+  margin: 0;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.35;
+  color: #000000;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.about-text + .about-text {
+  margin-top: 24px;
+}
+
+/* About Divider */
+.about-divider {
+  position: absolute;
+  top: 1580px;
+  left: 200px;
+  right: 177px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}

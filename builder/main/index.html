@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Studio — Main Canvas (Hero to Footer)</title>
+  <link rel="stylesheet" href="main.css" />
+  <script src="../shared/studio.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Studio Bar -->
+  <header class="studio-topbar">
+    <div class="studio-topbar-title">
+      <span>UI STUDIO</span>
+      <span class="studio-badge-pill">Local Tooling</span>
+    </div>
+
+    <nav class="studio-topbar-links">
+      <a href="../main/" class="studio-nav-btn active">Main Page (All)</a>
+      <a href="../about/" class="studio-nav-btn">About Page</a>
+    </nav>
+
+    <div class="studio-actions">
+      <span style="font-size:11px; color:var(--studio-muted);">Click to select • Double-click to edit • Arrow keys to nudge</span>
+    </div>
+  </header>
+
+  <!-- Live Editable Canvas -->
+  <main class="page-canvas">
+
+    <!-- Header Navigation -->
+    <header class="site-header studio-selectable" data-selector="site-header">
+      <a href="#" class="brand-logo">pankaj-psh/portfolio</a>
+      <nav class="header-nav">
+        <span class="menu-label">Menu</span>
+        <img src="/assets/icon/drop-down-arrow.svg" alt="" width="20" height="20" style="vertical-align: middle;" />
+        <img src="/assets/icon/light-theme.svg" alt="" width="22" height="22" style="vertical-align: middle; margin-left: 8px;" />
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section studio-selectable" data-selector="hero-section">
+      <h1 class="hero-headline studio-selectable" data-selector="hero-headline">Hi, I'm Pankaj<br>Sharma.</h1>
+      <p class="hero-bio studio-selectable" data-selector="hero-bio">Based in  Ahmedabad 🇮🇳 ,
+I build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next.</p>
+      <div class="hero-time studio-selectable" data-selector="hero-time">13:31:18 IST</div>
+    </section>
+
+    <!-- First Separator -->
+    <div class="hero-divider studio-selectable" data-selector="hero-divider"></div>
+
+    <!-- About Section -->
+    <h2 class="about-heading studio-selectable" data-selector="about-heading">About</h2>
+
+    <section class="about-section studio-selectable" data-selector="about-section">
+      <p class="about-text studio-selectable" data-selector="about-text">Making things work smoothly behind the scenes, learning something new everyday, and figuring out software architecture is what the routine looks like—driven by a genuine curiosity for how things tick.</p>
+      <p class="about-text studio-selectable" data-selector="about-text">Spanning DevOps, Git workflows, and personal projects, the day-to-day toolkit leans on Python, JSON, automation, and hands-on building</p>
+    </section>
+
+    <!-- Second Separator -->
+    <div class="about-divider studio-selectable" data-selector="about-divider"></div>
+
+  </main>
+
+</body>
+</html>

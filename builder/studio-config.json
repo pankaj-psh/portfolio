@@ -1,0 +1,41 @@
+{
+  "appName": "UI Studio",
+  "version": "1.0.0",
+  "description": "Universal portable UI Studio for layout, font tuning, and coordinate inspection",
+  "paths": {
+    "fonts": "/fonts",
+    "assets": "/assets",
+    "icons": "/assets/icon"
+  },
+  "fonts": [
+    {
+      "family": "Cormorant Garamond",
+      "weights": [400, 500, 600],
+      "files": {
+        "400": "cormorant-garamond-400-normal.woff2",
+        "500": "cormorant-garamond-500-normal.woff2",
+        "600": "cormorant-garamond-600-normal.woff2"
+      }
+    },
+    {
+      "family": "Courier Prime",
+      "weights": [400, 700],
+      "files": {
+        "400": "courier-prime-400-normal.woff2",
+        "700": "courier-prime-700-normal.woff2"
+      }
+    },
+    {
+      "family": "Jost",
+      "weights": [400, 500],
+      "files": {
+        "400": "jost-400-normal.woff2",
+        "500": "jost-500-normal.woff2"
+      }
+    }
+  ],
+  "theme": {
+    "background": "linear-gradient(180deg, #EBF3FA 0%, #F7ECE1 100%)",
+    "color": "#0a0a0a"
+  }
+}

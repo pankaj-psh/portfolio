@@ -1,0 +1,113 @@
+/* Dedicated About Page Styles (builder/about/about.css) */
+@import '../shared/studio.css';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(180deg, #EBF3FA 0%, #F7ECE1 100%);
+  color: #0a0a0a;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.page-canvas {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 1800px;
+  margin: 0 auto;
+  position: relative;
+  background: transparent;
+  padding-top: 48px;
+}
+
+/* Header */
+.site-header {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  padding-left: 200px;
+  padding-right: 177px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  font-family: 'Courier Prime', monospace;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 67px;
+}
+
+.menu-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+}
+
+/* Top Section Divider */
+.page-top-divider {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  right: 177px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* About Main Content */
+.about-page-title {
+  position: absolute;
+  top: 320px;
+  left: 200px;
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  color: #000000;
+}
+
+.about-page-content {
+  position: absolute;
+  top: 320px;
+  right: 177px;
+  width: 609px;
+  max-width: calc(100% - 220px);
+}
+
+.about-page-text {
+  margin: 0;
+  font-family: 'Courier Prime', monospace;
+  font-size: 24px;
+  line-height: 1.4;
+  color: #000000;
+  white-space: pre-line;
+}
+
+.about-page-text + .about-page-text {
+  margin-top: 28px;
+}
+
+.about-page-divider {
+  position: absolute;
+  top: 900px;
+  left: 200px;
+  right: 177px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
