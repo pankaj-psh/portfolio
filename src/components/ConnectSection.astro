@@ -67,18 +67,12 @@ const {
 
 <script is:inline>
 	function syncConnectDivider() {
+		if (window.innerWidth <= 768) return;
+
 		const divider = document.querySelector('.connect-divider');
 		const section = document.querySelector('.connect-section');
 		const heading = document.querySelector('.connect-heading');
 		const footnote = document.querySelector('.connect-footnote');
-		if (window.innerWidth <= 768) {
-			if (divider) { divider.style.left = ''; divider.style.right = ''; }
-			if (section) { section.style.left = ''; section.style.right = ''; }
-			if (heading) heading.style.left = '';
-			if (footnote) footnote.style.left = '';
-			return;
-		}
-
 		const themeBtn = document.querySelector('.theme-btn');
 		const logo = document.querySelector('.brand-logo');
 		const canvas = document.querySelector('.page-canvas');
@@ -100,7 +94,13 @@ const {
 		}
 	}
 
-	window.addEventListener('resize', syncConnectDivider);
+	let lastConnectWidth = window.innerWidth;
+	window.addEventListener('resize', () => {
+		if (window.innerWidth <= 768 && lastConnectWidth <= 768) return;
+		if (window.innerWidth === lastConnectWidth) return;
+		lastConnectWidth = window.innerWidth;
+		syncConnectDivider();
+	}, { passive: true });
 	window.addEventListener('load', syncConnectDivider);
 	document.addEventListener('DOMContentLoaded', syncConnectDivider);
 	syncConnectDivider();

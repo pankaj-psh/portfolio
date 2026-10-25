@@ -131,7 +131,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: 100vh;
-		min-height: 100dvh;
+		min-height: 100svh;
 		box-sizing: border-box;
 		padding: clamp(48px, 7vh, 64px) 20px 0 20px;
 		position: relative;

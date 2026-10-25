@@ -13,17 +13,14 @@ html {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
+	min-height: 100svh;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 	scrollbar-width: none; /* Firefox */
-	/* Current gradient background commented out:
-	background: var(--bg-gradient) no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	*/
 	background-color: var(--color-bg, #fbfbfb);
 	color: var(--color-ink, #0a0a0a);
 	transition: background-color 0.2s ease, color 0.2s ease;
+	overflow-x: clip;
 }
 
 html::-webkit-scrollbar {
@@ -43,6 +40,8 @@ body {
 	min-height: 100%;
 	background: transparent;
 	color: var(--color-ink);
+	overflow-x: clip;
+	-webkit-font-smoothing: antialiased;
 }
 
 #dots-canvas {

@@ -157,6 +157,11 @@ import '../styles/theme-slider.css';
 			});
 		});
 
-		window.addEventListener('resize', updateIndicator);
+		let lastSliderWidth = window.innerWidth;
+		window.addEventListener('resize', () => {
+			if (window.innerWidth === lastSliderWidth) return;
+			lastSliderWidth = window.innerWidth;
+			updateIndicator();
+		}, { passive: true });
 	})();
 </script>

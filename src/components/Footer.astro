@@ -86,12 +86,9 @@ const socialIcons: Record<string, ImageMetadata> = {
 
 <script is:inline>
 	function syncFooterAlignment() {
+		if (window.innerWidth <= 768) return;
 		const footer = document.querySelector('.footer-section');
 		if (!footer) return;
-		if (window.innerWidth <= 768) {
-			footer.style.left = '';
-			return;
-		}
 		const logo = document.querySelector('.brand-logo');
 		const canvas = document.querySelector('.page-canvas');
 		if (!canvas || !logo) return;
@@ -121,7 +118,13 @@ const socialIcons: Record<string, ImageMetadata> = {
 		});
 	}
 
-	window.addEventListener('resize', syncFooterAlignment);
+	let lastFooterWidth = window.innerWidth;
+	window.addEventListener('resize', () => {
+		if (window.innerWidth <= 768 && lastFooterWidth <= 768) return;
+		if (window.innerWidth === lastFooterWidth) return;
+		lastFooterWidth = window.innerWidth;
+		syncFooterAlignment();
+	}, { passive: true });
 	window.addEventListener('load', () => {
 		syncFooterAlignment();
 		setupFooterNavHover();

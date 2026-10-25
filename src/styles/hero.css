@@ -107,7 +107,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: calc(100vh - clamp(72px, 12vw, 90px));
-		min-height: calc(100dvh - clamp(72px, 12vw, 90px));
+		min-height: calc(100svh - clamp(72px, 12vw, 90px));
 		box-sizing: border-box;
 		padding: 0 20px;
 		position: relative;

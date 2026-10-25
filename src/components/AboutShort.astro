@@ -23,16 +23,11 @@ import '../styles/about.css';
 
 <script is:inline>
 	function syncAboutDivider() {
+		if (window.innerWidth <= 768) return;
+
 		const divider = document.querySelector('.about-divider');
 		const section = document.querySelector('.about-section');
 		const heading = document.querySelector('.about-heading');
-		if (window.innerWidth <= 768) {
-			if (divider) { divider.style.left = ''; divider.style.right = ''; }
-			if (section) { section.style.left = ''; section.style.right = ''; }
-			if (heading) heading.style.left = '';
-			return;
-		}
-
 		const themeBtn = document.querySelector('.theme-btn');
 		const logo = document.querySelector('.brand-logo');
 		const canvas = document.querySelector('.page-canvas');
@@ -53,7 +48,13 @@ import '../styles/about.css';
 		}
 	}
 
-	window.addEventListener('resize', syncAboutDivider);
+	let lastAboutWidth = window.innerWidth;
+	window.addEventListener('resize', () => {
+		if (window.innerWidth <= 768 && lastAboutWidth <= 768) return;
+		if (window.innerWidth === lastAboutWidth) return;
+		lastAboutWidth = window.innerWidth;
+		syncAboutDivider();
+	}, { passive: true });
 	window.addEventListener('load', syncAboutDivider);
 	document.addEventListener('DOMContentLoaded', syncAboutDivider);
 	syncAboutDivider();

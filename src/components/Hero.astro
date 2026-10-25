@@ -52,17 +52,10 @@ const bioParts = site.hero.bio.split('🇮🇳');
 	setInterval(updateIstClock, 1000);
 
 	function syncDivider() {
+		if (window.innerWidth <= 768) return;
+
 		const divider = document.querySelector('.hero-divider');
 		const heroSection = document.querySelector('.hero-section');
-		if (window.innerWidth <= 768) {
-			if (divider) {
-				divider.style.left = '';
-				divider.style.right = '';
-			}
-			if (heroSection) heroSection.style.left = '';
-			return;
-		}
-
 		const themeBtn = document.querySelector('.theme-btn');
 		const logo = document.querySelector('.brand-logo');
 		const canvas = document.querySelector('.page-canvas');
@@ -84,7 +77,13 @@ const bioParts = site.hero.bio.split('🇮🇳');
 		}
 	}
 
-	window.addEventListener('resize', syncDivider);
+	let lastHeroWidth = window.innerWidth;
+	window.addEventListener('resize', () => {
+		if (window.innerWidth <= 768 && lastHeroWidth <= 768) return;
+		if (window.innerWidth === lastHeroWidth) return;
+		lastHeroWidth = window.innerWidth;
+		syncDivider();
+	}, { passive: true });
 	window.addEventListener('load', syncDivider);
 	document.addEventListener('DOMContentLoaded', syncDivider);
 	syncDivider();
