@@ -15,7 +15,7 @@
 	font-size: 106px;
 	line-height: 0.95;
 	letter-spacing: 0;
-	color: #000000;
+	color: var(--color-ink, #000000);
 }
 
 .hero-bio {
@@ -28,7 +28,7 @@
 	font-size: 23.5px;
 	line-height: 1.25;
 	letter-spacing: 0;
-	color: #000000;
+	color: var(--color-ink, #000000);
 	white-space: pre-line;
 }
 
@@ -52,7 +52,7 @@
 	font-size: 13px;
 	line-height: 19px;
 	letter-spacing: 0;
-	color: #000000;
+	color: var(--color-ink, #000000);
 	font-variant-numeric: tabular-nums;
 }
 
@@ -62,7 +62,8 @@
 	left: 200px;
 	right: 177px;
 	height: 1px;
-	background: rgba(0, 0, 0, 0.1);
+	background: var(--color-border, rgba(0, 0, 0, 0.2));
+	transition: background-color 0.2s ease;
 }
 
 /* Responsive scaling for viewports below 1440px */

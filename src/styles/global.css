@@ -16,9 +16,14 @@ html {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 	scrollbar-width: none; /* Firefox */
+	/* Current gradient background commented out:
 	background: var(--bg-gradient) no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+	*/
+	background-color: var(--color-bg, #fbfbfb);
+	color: var(--color-ink, #0a0a0a);
+	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html::-webkit-scrollbar {

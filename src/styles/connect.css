@@ -98,7 +98,11 @@
 }
 
 [data-theme="dark"] .connect-input:focus,
-[data-theme="dark"] .connect-textarea:focus {
+[data-theme="dark"] .connect-textarea:focus,
+[data-theme="dim"] .connect-input:focus,
+[data-theme="dim"] .connect-textarea:focus,
+[data-theme="gray"] .connect-input:focus,
+[data-theme="gray"] .connect-textarea:focus {
 	border-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -143,7 +147,8 @@
 	left: 200px;
 	right: 177px;
 	height: 1px;
-	background: rgba(0, 0, 0, 0.1);
+	background: var(--color-border, rgba(0, 0, 0, 0.2));
+	transition: background-color 0.2s ease;
 }
 
 /* Responsive scaling for viewports below 1440px */

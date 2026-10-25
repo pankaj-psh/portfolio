@@ -1,0 +1,78 @@
+/**
+ * Theme Slider Styles (40-segment swatch bar)
+ * Adapted from blog_notera for portfolio header integration.
+ */
+
+.theme-slider-wrap {
+	display: inline-flex;
+	align-items: center;
+	padding: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.theme-segment-wrap {
+	width: 178px;
+	max-width: min(220px, 35vw);
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+}
+
+.theme-segment-bar {
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	gap: 2px;
+	width: 100%;
+	height: 22px;
+	padding: 0;
+	background: var(--color-border, rgba(0, 0, 0, 0.2));
+	overflow: hidden;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	user-select: none;
+}
+
+.theme-segment-btn {
+	flex: 1;
+	min-width: 0;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	background: var(--color-bg, #fbfbfb);
+	transition: background 0.15s ease;
+}
+
+.theme-segment-btn:hover {
+	opacity: 0.85;
+}
+
+.theme-segment-btn:focus {
+	outline: none;
+}
+
+.theme-segment-indicator {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	pointer-events: none;
+	background: #f59794; /* Soft coral/salmon pink matching portfolio scroll dots */
+	transition: left 0.15s ease;
+}
+
+.theme-segment-bar.is-dragging .theme-segment-indicator {
+	transition: none;
+}
+
+@media (max-width: 640px) {
+	.theme-segment-wrap {
+		width: 130px;
+	}
+	.theme-segment-bar {
+		height: 20px;
+	}
+}

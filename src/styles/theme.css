@@ -7,12 +7,11 @@
  * (inputs, cards, expanded panels) so they stay one step lighter/darker than the page.
  */
 
-:root {
-	/* Light theme (default) — Figma Desktop - 1 */
-	--color-bg-start: #EBF3FA;
-	--color-bg-end: #F7ECE1;
-	--color-bg: #EBF3FA;
-	--bg-gradient: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+:root,
+[data-theme="light"],
+[data-theme="light"]:root {
+	/* Light theme (default) — matching blog */
+	--color-bg: #fbfbfb;
 	--color-ink: #0a0a0a;
 	--color-muted: rgba(0, 0, 0, 0.65);
 	--color-link: #0000ff;
@@ -28,6 +27,7 @@
 }
 
 /* Dark — full black */
+[data-theme="dark"],
 [data-theme="dark"]:root {
 	--color-bg: #0a0a0a;
 	--color-ink: #fbfbfb;
@@ -42,6 +42,7 @@
 }
 
 /* Dim — dark gray */
+[data-theme="dim"],
 [data-theme="dim"]:root {
 	--color-bg: #1c1c1e;
 	--color-ink: #e8e8ed;
@@ -56,6 +57,7 @@
 }
 
 /* Gray — middle ground */
+[data-theme="gray"],
 [data-theme="gray"]:root {
 	--color-bg: #3a3a3c;
 	--color-ink: #e0e0e0;
@@ -70,6 +72,7 @@
 }
 
 /* Soft — light gray */
+[data-theme="soft"],
 [data-theme="soft"]:root {
 	--color-bg: #e5e5ea;
 	--color-ink: #1c1c1e;

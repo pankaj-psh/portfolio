@@ -25,6 +25,21 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 		<link rel="preload" href={`${baseUrl}fonts/courier-prime-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href={`${baseUrl}fonts/jost-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
 		<title>{site.meta.title}</title>
+		<!-- Theme initialization (prevents FOUC on reload) -->
+		<script is:inline>
+			(function () {
+				try {
+					var raw = localStorage.getItem('themeLevel');
+					var level = raw !== null ? parseInt(raw, 10) : 39;
+					if (isNaN(level) || level < 0) level = 0;
+					if (level > 39) level = 39;
+					var themes = ['dark', 'dim', 'gray', 'soft', 'light'];
+					var themeIdx = Math.min(4, Math.floor(level / 8));
+					document.documentElement.setAttribute('data-theme', themes[themeIdx]);
+					document.documentElement.setAttribute('data-theme-level', String(level));
+				} catch (e) {}
+			})();
+		</script>
 	</head>
 
 	<body>

@@ -67,6 +67,12 @@
 	object-fit: contain;
 }
 
+[data-theme="dark"] .footer-social-icon,
+[data-theme="dim"] .footer-social-icon,
+[data-theme="gray"] .footer-social-icon {
+	filter: invert(1);
+}
+
 /* Nav links (Home, Work, Projects, About, Contact, Resume, Blogs) */
 .footer-nav-link {
 	display: inline-flex;

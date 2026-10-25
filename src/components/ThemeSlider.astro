@@ -1,0 +1,162 @@
+---
+/**
+ * ThemeSlider Component — 40-segment swatch slider (UI only for preview)
+ * Adapted from blog_notera. Interactivity allows dragging/clicking the indicator,
+ * with actual theme-switching functionality disabled for initial UI review.
+ */
+import '../styles/theme-slider.css';
+---
+
+<div class="theme-slider-wrap theme-btn" aria-label="Theme selector">
+	<div class="theme-segment-wrap" role="group" aria-label="Theme">
+		<div class="theme-segment-bar" id="theme-segment-bar">
+			{Array.from({ length: 40 }, (_, i) => (
+				<button
+					type="button"
+					class="theme-segment-btn"
+					aria-label={`Theme segment ${i + 1}`}
+					aria-pressed={i === 39}
+					data-index={i}
+				/>
+			))}
+			<div class="theme-segment-indicator" id="theme-segment-indicator" aria-hidden="true"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function () {
+		const TOTAL = 40;
+		const themes = ['dark', 'dim', 'gray', 'soft', 'light'];
+		function indexToTheme(idx: number): string {
+			return themes[Math.min(4, Math.floor(idx / 8))];
+		}
+
+		const bar = document.getElementById('theme-segment-bar');
+		const indicator = document.getElementById('theme-segment-indicator');
+		if (!bar || !indicator) return;
+
+		const buttons = bar.querySelectorAll<HTMLButtonElement>('.theme-segment-btn');
+		const gap = 2;
+		let selectedIndex = 39;
+		let dragging = false;
+
+		function getSegmentWidth(): number {
+			if (!buttons.length) return 0;
+			return buttons[0].getBoundingClientRect().width;
+		}
+
+		function updateIndicator() {
+			const w = getSegmentWidth();
+			if (!indicator) return;
+			indicator.style.width = `${w}px`;
+			indicator.style.left = `${selectedIndex * (w + gap)}px`;
+		}
+
+		function setIndex(idx: number) {
+			selectedIndex = Math.max(0, Math.min(TOTAL - 1, idx));
+			buttons.forEach((b, i) => {
+				b.setAttribute('aria-pressed', i === selectedIndex ? 'true' : 'false');
+			});
+			updateIndicator();
+			const currentTheme = indexToTheme(selectedIndex);
+			document.documentElement.setAttribute('data-theme', currentTheme);
+			document.documentElement.setAttribute('data-theme-level', String(selectedIndex));
+			try {
+				localStorage.setItem('themeLevel', String(selectedIndex));
+			} catch (e) {}
+		}
+
+		// Initialize from data-theme-level or localStorage
+		const levelAttr = document.documentElement.getAttribute('data-theme-level');
+		if (levelAttr !== null) {
+			const n = parseInt(levelAttr, 10);
+			if (!isNaN(n) && n >= 0 && n <= 39) selectedIndex = n;
+		} else {
+			try {
+				const saved = localStorage.getItem('themeLevel');
+				if (saved !== null) {
+					const n = parseInt(saved, 10);
+					if (!isNaN(n) && n >= 0 && n <= 39) selectedIndex = n;
+				}
+			} catch (e) {}
+		}
+		setIndex(selectedIndex);
+
+		// Initial indicator placement
+		updateIndicator();
+		requestAnimationFrame(updateIndicator);
+		window.addEventListener('load', updateIndicator);
+		setTimeout(updateIndicator, 50);
+
+		function getIndexFromClientX(clientX: number): number {
+			const rect = bar.getBoundingClientRect();
+			const offsetX = Math.max(0, Math.min(rect.width, clientX - rect.left));
+			const ratio = rect.width > 0 ? offsetX / rect.width : 0;
+			return Math.min(TOTAL - 1, Math.floor(ratio * TOTAL));
+		}
+
+		bar.addEventListener('mousedown', (e: MouseEvent) => {
+			if (e.button !== 0) return;
+			e.preventDefault();
+			dragging = true;
+			bar.classList.add('is-dragging');
+			const idx = getIndexFromClientX(e.clientX);
+			setIndex(idx);
+		});
+
+		window.addEventListener('mousemove', (e: MouseEvent) => {
+			if (!dragging) return;
+			if ((e.buttons & 1) !== 1) {
+				dragging = false;
+				bar.classList.remove('is-dragging');
+				return;
+			}
+			const idx = getIndexFromClientX(e.clientX);
+			setIndex(idx);
+		});
+
+		window.addEventListener('mouseup', (e: MouseEvent) => {
+			if (e.button === 0) {
+				dragging = false;
+				bar.classList.remove('is-dragging');
+			}
+		});
+
+		document.addEventListener('mouseleave', () => {
+			dragging = false;
+			bar.classList.remove('is-dragging');
+		});
+
+		// Touch drag support
+		bar.addEventListener('touchstart', (e: TouchEvent) => {
+			if (!e.touches || e.touches.length === 0) return;
+			dragging = true;
+			bar.classList.add('is-dragging');
+			const idx = getIndexFromClientX(e.touches[0].clientX);
+			setIndex(idx);
+			e.preventDefault();
+		}, { passive: false });
+
+		window.addEventListener('touchmove', (e: TouchEvent) => {
+			if (!dragging || !e.touches || e.touches.length === 0) return;
+			const idx = getIndexFromClientX(e.touches[0].clientX);
+			setIndex(idx);
+			e.preventDefault();
+		}, { passive: false });
+
+		window.addEventListener('touchend', () => {
+			dragging = false;
+			bar.classList.remove('is-dragging');
+		});
+
+		buttons.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const idx = parseInt(btn.getAttribute('data-index') ?? '39', 10);
+				setIndex(idx);
+			});
+		});
+
+		window.addEventListener('resize', updateIndicator);
+	})();
+</script>
