@@ -86,6 +86,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 	.scroll-dot.active {
 		background-color: #f59794;
 	}
+
+	@media (max-width: 768px) {
+		#scroll-dots {
+			display: none !important;
+		}
+	}
 </style>
 
 <script is:inline>
@@ -128,6 +134,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 	}
 
 	window.addEventListener('scroll', () => {
+		if (window.innerWidth <= 768) return;
 		targetIndex = getTargetIndex();
 		if (!rafId) rafId = requestAnimationFrame(animate);
 	}, { passive: true });
