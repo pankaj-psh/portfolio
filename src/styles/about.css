@@ -83,16 +83,26 @@
 
 @media (max-width: 640px) {
 	.about-heading {
-		display: none;
+		display: block;
+		position: absolute;
+		top: calc(100vh + clamp(110px, 14vh, 140px));
+		top: calc(100dvh + clamp(110px, 14vh, 140px));
+		left: 20px;
+		font-size: 18px;
+		line-height: 1.35;
+		color: var(--color-ink, #000000);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 4px;
 	}
 
 	.about-section {
-		top: calc(100vh + clamp(200px, 26vh, 250px));
-		top: calc(100dvh + clamp(200px, 26vh, 250px));
+		top: calc(100vh + clamp(165px, 21vh, 200px));
+		top: calc(100dvh + clamp(165px, 21vh, 200px));
 		left: 20px;
-		right: 28px;
-		width: calc(100% - 48px);
-		max-width: calc(100% - 48px);
+		right: 20px;
+		width: calc(100% - 40px);
+		max-width: calc(100% - 40px);
 	}
 
 	.about-text {
@@ -108,18 +118,25 @@
 		top: calc(200vh - 36px);
 		top: calc(200dvh - 36px);
 		left: 20px;
-		right: 28px;
+		right: 20px;
 	}
 }
 
 @media (max-width: 400px) {
+	.about-heading {
+		top: calc(100vh + clamp(100px, 13vh, 130px));
+		top: calc(100dvh + clamp(100px, 13vh, 130px));
+		left: 16px;
+		font-size: 17px;
+	}
+
 	.about-section {
-		top: calc(100vh + clamp(190px, 25vh, 240px));
-		top: calc(100dvh + clamp(190px, 25vh, 240px));
-		left: 18px;
-		right: 28px;
-		width: calc(100% - 46px);
-		max-width: calc(100% - 46px);
+		top: calc(100vh + clamp(150px, 19vh, 185px));
+		top: calc(100dvh + clamp(150px, 19vh, 185px));
+		left: 16px;
+		right: 16px;
+		width: calc(100% - 32px);
+		max-width: calc(100% - 32px);
 	}
 
 	.about-text {
@@ -129,7 +146,7 @@
 	.about-divider {
 		top: calc(200vh - 32px);
 		top: calc(200dvh - 32px);
-		left: 18px;
-		right: 28px;
+		left: 16px;
+		right: 16px;
 	}
 }

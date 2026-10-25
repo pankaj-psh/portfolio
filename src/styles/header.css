@@ -99,9 +99,10 @@ a.brand-logo:hover {
 
 @media (max-width: 640px) {
 	.site-header {
-		top: clamp(64px, 16vw, 74px);
-		padding-left: 18px;
-		padding-right: 28px; /* Safe clearance from right scroll dots */
+		top: clamp(60px, 15vw, 72px);
+		padding-left: 20px;
+		padding-right: 20px;
+		align-items: flex-start;
 	}
 	.logo-break {
 		display: block;
@@ -110,39 +111,46 @@ a.brand-logo:hover {
 		font-size: 15px;
 		line-height: 1.15;
 	}
-	.menu-label {
-		font-size: 16px;
-		line-height: 20px;
-	}
-	.menu-icon,
-	.theme-icon {
-		width: 20px;
-		height: 20px;
-	}
 	.header-nav {
-		gap: 14px;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 6px;
+	}
+	.theme-slider-wrap {
+		order: 1;
+	}
+	.menu-btn {
+		order: 2;
+		gap: 3px;
+	}
+	.menu-label {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	.menu-icon {
+		width: 17px;
+		height: 17px;
 	}
 }
 
 @media (max-width: 400px) {
 	.site-header {
-		top: 72px;
-		padding-left: 14px;
-		padding-right: 26px;
+		top: clamp(52px, 14vw, 64px);
+		padding-left: 16px;
+		padding-right: 16px;
 	}
 	a.brand-logo {
 		font-size: 14px;
 		line-height: 1.15;
 	}
-	.menu-label {
-		font-size: 15px;
-	}
-	.menu-icon,
-	.theme-icon {
-		width: 18px;
-		height: 18px;
-	}
 	.header-nav {
-		gap: 12px;
+		gap: 5px;
+	}
+	.menu-label {
+		font-size: 13.5px;
+	}
+	.menu-icon {
+		width: 16px;
+		height: 16px;
 	}
 }

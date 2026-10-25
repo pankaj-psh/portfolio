@@ -70,9 +70,15 @@
 
 @media (max-width: 640px) {
 	.theme-segment-wrap {
-		width: 130px;
+		width: clamp(130px, 38vw, 150px);
 	}
 	.theme-segment-bar {
 		height: 20px;
+	}
+}
+
+@media (max-width: 360px) {
+	.theme-segment-wrap {
+		width: 125px;
 	}
 }
