@@ -153,11 +153,13 @@
 	letter-spacing: 0;
 	width: 155px;
 	flex-shrink: 0;
+	white-space: nowrap;
 }
 
 .footer-bottom-links {
 	display: flex;
 	gap: 36px;
+	white-space: nowrap;
 }
 
 .footer-bottom-link {

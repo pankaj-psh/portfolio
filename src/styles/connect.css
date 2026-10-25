@@ -133,6 +133,7 @@
 	font-size: 14px;
 	color: var(--color-muted, rgba(0, 0, 0, 0.65));
 	letter-spacing: 0;
+	white-space: nowrap;
 }
 
 /* Divider below Connect */

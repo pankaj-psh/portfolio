@@ -51,11 +51,12 @@ const bioParts = site.hero.bio.split('🇮🇳');
 		const themeBtn = document.querySelector('.theme-btn');
 		const logo = document.querySelector('.brand-logo');
 		const divider = document.querySelector('.hero-divider');
+		const heroSection = document.querySelector('.hero-section');
 		const canvas = document.querySelector('.page-canvas');
-		if (!divider || !canvas) return;
+		if (!canvas) return;
 
 		const canvasRect = canvas.getBoundingClientRect();
-		if (themeBtn) {
+		if (themeBtn && divider) {
 			const themeRect = themeBtn.getBoundingClientRect();
 			const rightOffset = Math.max(0, canvasRect.right - themeRect.right);
 			divider.style.right = `${rightOffset}px`;
@@ -63,7 +64,10 @@ const bioParts = site.hero.bio.split('🇮🇳');
 		if (logo) {
 			const logoRect = logo.getBoundingClientRect();
 			const leftOffset = Math.max(0, logoRect.left - canvasRect.left);
-			divider.style.left = `${leftOffset}px`;
+			if (divider) divider.style.left = `${leftOffset}px`;
+			if (heroSection && window.innerWidth > 640) {
+				heroSection.style.left = `${leftOffset}px`;
+			}
 		}
 	}
 
