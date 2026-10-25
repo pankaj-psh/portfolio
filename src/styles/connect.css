@@ -1,0 +1,270 @@
+/* Connect section */
+.connect-heading {
+	margin: 0;
+	position: absolute;
+	top: 3540px;
+	left: 200px;
+	font-family: 'Jost', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.35;
+	letter-spacing: 0;
+	color: var(--color-ink, #000000);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.connect-section {
+	position: absolute;
+	top: 3540px;
+	right: 177px;
+	width: 609px;
+	max-width: calc(100% - 220px);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+.connect-title {
+	margin: 0 0 32px 0;
+	font-family: 'Courier Prime', monospace;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 1.35;
+	letter-spacing: 0;
+	color: var(--color-ink, #000000);
+}
+
+.connect-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+}
+
+.connect-field-wrap {
+	position: relative;
+	width: 100%;
+}
+
+.connect-error-label {
+	display: none;
+	position: absolute;
+	top: calc(100% + 4px);
+	left: 2px;
+	font-family: 'Courier Prime', monospace;
+	font-size: 12px;
+	color: #d32f2f;
+	line-height: 1;
+	margin: 0;
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+.connect-field-wrap.has-error .connect-error-label {
+	display: block;
+}
+
+.connect-field-wrap.has-error .connect-input {
+	border-color: #d32f2f;
+}
+
+.connect-input,
+.connect-textarea {
+	width: 100%;
+	box-sizing: border-box;
+	font-family: 'Courier Prime', monospace;
+	font-size: 20px;
+	color: var(--color-ink, #000000);
+	background: transparent;
+	border: 1px solid var(--color-line, rgba(0, 0, 0, 0.3));
+	border-radius: 4px;
+	padding: 14px 18px;
+	outline: none;
+}
+
+.connect-input::placeholder,
+.connect-textarea::placeholder {
+	color: var(--color-muted, rgba(0, 0, 0, 0.6));
+	font-family: 'Courier Prime', monospace;
+}
+
+.connect-input:focus,
+.connect-textarea:focus {
+	border-color: rgba(0, 0, 0, 0.6);
+	outline: none;
+	box-shadow: none;
+}
+
+[data-theme="dark"] .connect-input:focus,
+[data-theme="dark"] .connect-textarea:focus {
+	border-color: rgba(255, 255, 255, 0.6);
+}
+
+.connect-textarea {
+	min-height: 175px;
+	resize: vertical;
+	line-height: 1.4;
+}
+
+.connect-submit-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-start;
+	padding: 8px 22px;
+	font-family: 'Courier Prime', monospace;
+	font-size: 18px;
+	color: var(--color-ink, #000000);
+	background: rgba(0, 0, 0, 0.04);
+	border: 1px solid var(--color-line, rgba(0, 0, 0, 0.3));
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+/* Footnote */
+.connect-footnote {
+	position: absolute;
+	top: 4040px;
+	left: 200px;
+	margin: 0;
+	font-family: 'Jost', sans-serif;
+	font-size: 14px;
+	color: var(--color-muted, rgba(0, 0, 0, 0.65));
+	letter-spacing: 0;
+}
+
+/* Divider below Connect */
+.connect-divider {
+	position: absolute;
+	top: 4140px;
+	left: 200px;
+	right: 177px;
+	height: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive scaling for viewports below 1440px */
+@media (max-width: 1440px) {
+	.connect-heading {
+		top: clamp(2360px, 245.8vw, 3540px);
+		left: clamp(20px, 13.88vw, 200px);
+		font-size: clamp(14px, 1.39vw, 20px);
+	}
+
+	.connect-section {
+		top: clamp(2360px, 245.8vw, 3540px);
+		right: clamp(20px, 12.29vw, 177px);
+		left: auto;
+		width: min(609px, calc(100% - clamp(40px, 15vw, 220px)));
+	}
+
+	.connect-title {
+		font-size: clamp(20px, 2.08vw, 30px);
+		margin-bottom: clamp(20px, 2.22vw, 32px);
+	}
+
+	.connect-input,
+	.connect-textarea {
+		font-size: clamp(15px, 1.39vw, 20px);
+		padding: clamp(10px, 0.97vw, 14px) clamp(12px, 1.25vw, 18px);
+	}
+
+	.connect-textarea {
+		min-height: clamp(120px, 12vw, 175px);
+	}
+
+	.connect-submit-btn {
+		font-size: clamp(14px, 1.25vw, 18px);
+		padding: clamp(6px, 0.55vw, 8px) clamp(16px, 1.52vw, 22px);
+	}
+
+	.connect-footnote {
+		top: clamp(2700px, 280.5vw, 4040px);
+		left: clamp(20px, 13.88vw, 200px);
+		font-size: clamp(12px, 0.97vw, 14px);
+	}
+
+	.connect-divider {
+		top: clamp(2780px, 287.5vw, 4140px);
+		left: clamp(20px, 13.88vw, 200px);
+		right: clamp(20px, 12.29vw, 177px);
+	}
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+	.connect-heading {
+		display: none;
+	}
+
+	.connect-section {
+		top: calc(400vh + clamp(200px, 26vh, 250px));
+		top: calc(400dvh + clamp(200px, 26vh, 250px));
+		left: 20px;
+		right: 28px;
+		width: calc(100% - 48px);
+		max-width: calc(100% - 48px);
+	}
+
+	.connect-title {
+		font-size: 22px;
+		margin-bottom: 20px;
+	}
+
+	.connect-input,
+	.connect-textarea {
+		font-size: 15px;
+		padding: 12px 14px;
+	}
+
+	.connect-textarea {
+		min-height: 120px;
+	}
+
+	.connect-footnote {
+		top: calc(400vh + clamp(620px, 68vh, 670px));
+		top: calc(400dvh + clamp(620px, 68vh, 670px));
+		left: 20px;
+		right: 28px;
+		font-size: 13px;
+	}
+
+	.connect-divider {
+		top: calc(500vh - 36px);
+		top: calc(500dvh - 36px);
+		left: 20px;
+		right: 28px;
+	}
+}
+
+@media (max-width: 400px) {
+	.connect-section {
+		top: calc(400vh + clamp(190px, 25vh, 240px));
+		top: calc(400dvh + clamp(190px, 25vh, 240px));
+		left: 18px;
+		right: 28px;
+		width: calc(100% - 46px);
+		max-width: calc(100% - 46px);
+	}
+
+	.connect-title {
+		font-size: 20px;
+	}
+
+	.connect-footnote {
+		top: calc(400vh + clamp(600px, 65vh, 650px));
+		top: calc(400dvh + clamp(600px, 65vh, 650px));
+		left: 18px;
+		right: 28px;
+		font-size: 12px;
+	}
+
+	.connect-divider {
+		top: calc(500vh - 32px);
+		top: calc(500dvh - 32px);
+		left: 18px;
+		right: 28px;
+	}
+}

@@ -44,5 +44,14 @@
 				"description": "I started as a DevOps Intern at Sahana System Limited, getting hands-on with cloud infrastructure and deployment automation."
 			}
 		]
+	},
+	"connectSection": {
+		"title": "Connect",
+		"heading": "Let's get in touch",
+		"contactPlaceholder": "{Your contact}",
+		"namePlaceholder": "{Your good name}",
+		"messagePlaceholder": "{Small Message}",
+		"submitText": "Submit",
+		"footnote": "*The best way to connect me is by email"
 	}
 }

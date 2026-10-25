@@ -1,0 +1,132 @@
+---
+/**
+ * ConnectSection Component — Let's get in touch form and footnote
+ * Frame 5: Aligned with Figma Desktop - 1
+ */
+import site from '../data/site.json';
+import '../styles/connect.css';
+
+const {
+	title = 'Connect',
+	heading = "Let's get in touch",
+	contactPlaceholder = '{Your contact}',
+	namePlaceholder = '{Your good name}',
+	messagePlaceholder = '{Small Message}',
+	submitText = 'Submit',
+	footnote = '*The best way to connect me is by email',
+} = site.connectSection || {};
+---
+
+<h2 class="connect-heading">{title}</h2>
+
+<section class="connect-section" aria-label="Connect and Contact Form">
+	<h3 class="connect-title">{heading}</h3>
+
+	<form class="connect-form" id="connect-form" onsubmit="return false;" novalidate>
+		<div class="connect-field-wrap" id="contact-field-wrap">
+			<input
+				type="text"
+				name="contact"
+				id="connect-contact"
+				class="connect-input"
+				placeholder={contactPlaceholder}
+				aria-label="Your contact"
+				autocomplete="off"
+			/>
+			<span class="connect-error-label" id="contact-error">Please fill out this field.</span>
+		</div>
+
+		<input
+			type="text"
+			name="name"
+			class="connect-input"
+			placeholder={namePlaceholder}
+			aria-label="Your good name"
+			autocomplete="off"
+		/>
+
+		<textarea
+			name="message"
+			class="connect-textarea"
+			placeholder={messagePlaceholder}
+			aria-label="Your message"
+			rows="4"
+		></textarea>
+
+		<button type="button" id="connect-submit-btn" class="connect-submit-btn">
+			{submitText}
+		</button>
+	</form>
+</section>
+
+<p class="connect-footnote">{footnote}</p>
+
+<div class="connect-divider" aria-hidden="true"></div>
+
+<script is:inline>
+	function syncConnectDivider() {
+		const themeBtn = document.querySelector('.theme-btn');
+		const logo = document.querySelector('.brand-logo');
+		const divider = document.querySelector('.connect-divider');
+		const section = document.querySelector('.connect-section');
+		const heading = document.querySelector('.connect-heading');
+		const footnote = document.querySelector('.connect-footnote');
+		const canvas = document.querySelector('.page-canvas');
+		if (!canvas) return;
+
+		const canvasRect = canvas.getBoundingClientRect();
+		if (themeBtn) {
+			const themeRect = themeBtn.getBoundingClientRect();
+			const rightOffset = Math.max(0, canvasRect.right - themeRect.right);
+			if (divider) divider.style.right = `${rightOffset}px`;
+			if (section) section.style.right = `${rightOffset}px`;
+		}
+		if (logo) {
+			const logoRect = logo.getBoundingClientRect();
+			const leftOffset = Math.max(0, logoRect.left - canvasRect.left);
+			if (divider) divider.style.left = `${leftOffset}px`;
+			if (heading) heading.style.left = `${leftOffset}px`;
+			if (footnote) footnote.style.left = `${leftOffset}px`;
+		}
+	}
+
+	window.addEventListener('resize', syncConnectDivider);
+	window.addEventListener('load', syncConnectDivider);
+	document.addEventListener('DOMContentLoaded', syncConnectDivider);
+	syncConnectDivider();
+
+	const form = document.getElementById('connect-form');
+	const contactInput = document.getElementById('connect-contact');
+	const contactWrap = document.getElementById('contact-field-wrap');
+	const submitBtn = document.getElementById('connect-submit-btn');
+
+	function handleValidate() {
+		if (!contactInput) return;
+		if (!contactInput.value.trim()) {
+			contactWrap?.classList.add('has-error');
+			contactInput.focus();
+		} else {
+			contactWrap?.classList.remove('has-error');
+		}
+	}
+
+	if (submitBtn) {
+		submitBtn.addEventListener('click', handleValidate);
+	}
+
+	if (form) {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			handleValidate();
+			return false;
+		});
+	}
+
+	if (contactInput && contactWrap) {
+		contactInput.addEventListener('input', () => {
+			if (contactInput.value.trim()) {
+				contactWrap.classList.remove('has-error');
+			}
+		});
+	}
+</script>
