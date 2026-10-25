@@ -7,7 +7,7 @@ import site from '../data/site.json';
 import '../styles/work.css';
 ---
 
-<h2 class="work-heading">{site.workSection.title || 'Work'}</h2>
+<h2 class="work-heading" id="work">{site.workSection.title || 'Work'}</h2>
 
 <section class="work-section" aria-label="Work and Projects">
 	<p class="work-intro">
@@ -35,11 +35,18 @@ import '../styles/work.css';
 
 <script is:inline>
 	function syncWorkDivider() {
-		const themeBtn = document.querySelector('.theme-btn');
-		const logo = document.querySelector('.brand-logo');
 		const divider = document.querySelector('.work-divider');
 		const section = document.querySelector('.work-section');
 		const heading = document.querySelector('.work-heading');
+		if (window.innerWidth <= 768) {
+			if (divider) { divider.style.left = ''; divider.style.right = ''; }
+			if (section) { section.style.left = ''; section.style.right = ''; }
+			if (heading) heading.style.left = '';
+			return;
+		}
+
+		const themeBtn = document.querySelector('.theme-btn');
+		const logo = document.querySelector('.brand-logo');
 		const canvas = document.querySelector('.page-canvas');
 		if (!canvas) return;
 

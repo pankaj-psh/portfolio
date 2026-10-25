@@ -42,10 +42,16 @@ import Footer from '../components/Footer.astro';
 		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 768px) {
 		.page-canvas {
-			min-height: calc(500vh + 160px);
-			min-height: calc(500dvh + 160px);
+			min-height: auto;
+			height: auto;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			padding-top: 0;
+			overflow-x: hidden;
 		}
 	}
 </style>

@@ -97,23 +97,25 @@
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 	.hero-section {
-		top: clamp(280px, 36vh, 320px);
-		left: 20px;
-		width: calc(100% - 40px);
-		max-width: calc(100% - 40px);
-		height: calc(100vh - 360px);
-		height: calc(100dvh - 360px);
+		position: relative;
+		top: auto;
+		left: auto;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		margin-top: clamp(32px, 7vw, 44px);
+		padding: 0 20px;
 		display: flex;
 		flex-direction: column;
 	}
 	.hero-headline {
-		font-size: clamp(52px, 14vw, 64px);
+		font-size: clamp(50px, 13.5vw, 64px);
 		line-height: 0.95;
 	}
 	.hero-bio {
-		font-size: clamp(20px, 5.2vw, 23.5px);
+		font-size: clamp(19px, 5vw, 23.5px);
 		line-height: 1.25;
 		margin-top: 24px;
 		width: 100%;
@@ -124,51 +126,44 @@
 		vertical-align: -2px;
 	}
 	.hero-time-wrap {
-		margin-top: auto;
-		margin-bottom: 6px;
+		margin-top: 28px;
+		margin-bottom: 0;
 	}
 	.hero-time {
 		font-size: 12.5px;
 	}
 	.hero-divider {
-		top: calc(100vh - 36px);
-		top: calc(100dvh - 36px);
-		left: 20px;
-		right: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		width: calc(100% - 40px);
+		margin: 40px auto 0 auto;
 	}
 }
 
 @media (max-width: 400px) {
 	.hero-section {
-		top: clamp(260px, 34vh, 300px);
-		left: 16px;
-		width: calc(100% - 32px);
-		max-width: calc(100% - 32px);
-		height: calc(100vh - 340px);
-		height: calc(100dvh - 340px);
-		display: flex;
-		flex-direction: column;
+		margin-top: 28px;
+		padding: 0 16px;
 	}
 	.hero-headline {
-		font-size: clamp(48px, 13.5vw, 56px);
+		font-size: clamp(44px, 12.5vw, 52px);
 		line-height: 0.95;
 	}
 	.hero-bio {
-		font-size: clamp(19px, 5vw, 21.5px);
+		font-size: clamp(17.5px, 4.8vw, 20px);
 		line-height: 1.25;
 		margin-top: 20px;
 	}
 	.hero-time-wrap {
-		margin-top: auto;
-		margin-bottom: 6px;
+		margin-top: 24px;
 	}
 	.hero-time {
 		font-size: 12px;
 	}
 	.hero-divider {
-		top: calc(100vh - 32px);
-		top: calc(100dvh - 32px);
-		left: 16px;
-		right: 16px;
+		width: calc(100% - 32px);
+		margin: 32px auto 0 auto;
 	}
 }

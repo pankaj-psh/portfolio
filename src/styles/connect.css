@@ -200,13 +200,13 @@
 }
 
 /* Mobile responsive */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 	.connect-heading {
 		display: block;
-		position: absolute;
-		top: calc(400vh + clamp(110px, 14vh, 140px));
-		top: calc(400dvh + clamp(110px, 14vh, 140px));
-		left: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 44px 20px 16px 20px;
 		font-size: 18px;
 		line-height: 1.35;
 		color: var(--color-ink, #000000);
@@ -216,12 +216,13 @@
 	}
 
 	.connect-section {
-		top: calc(400vh + clamp(165px, 21vh, 200px));
-		top: calc(400dvh + clamp(165px, 21vh, 200px));
-		left: 20px;
-		right: 20px;
-		width: calc(100% - 40px);
-		max-width: calc(100% - 40px);
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 20px;
 	}
 
 	.connect-title {
@@ -240,54 +241,48 @@
 	}
 
 	.connect-footnote {
-		top: calc(400vh + clamp(620px, 68vh, 670px));
-		top: calc(400dvh + clamp(620px, 68vh, 670px));
-		left: 20px;
-		right: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		margin: 24px 20px 0 20px;
 		font-size: 13px;
+		white-space: normal;
+		line-height: 1.4;
 	}
 
 	.connect-divider {
-		top: calc(500vh - 36px);
-		top: calc(500dvh - 36px);
-		left: 20px;
-		right: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		width: calc(100% - 40px);
+		margin: 40px auto 0 auto;
 	}
 }
 
 @media (max-width: 400px) {
 	.connect-heading {
-		top: calc(400vh + clamp(100px, 13vh, 130px));
-		top: calc(400dvh + clamp(100px, 13vh, 130px));
-		left: 16px;
+		margin: 36px 16px 14px 16px;
 		font-size: 17px;
 	}
 
 	.connect-section {
-		top: calc(400vh + clamp(150px, 19vh, 185px));
-		top: calc(400dvh + clamp(150px, 19vh, 185px));
-		left: 16px;
-		right: 16px;
-		width: calc(100% - 32px);
-		max-width: calc(100% - 32px);
+		padding: 0 16px;
 	}
 
 	.connect-title {
 		font-size: 20px;
+		margin-bottom: 16px;
 	}
 
 	.connect-footnote {
-		top: calc(400vh + clamp(600px, 65vh, 650px));
-		top: calc(400dvh + clamp(600px, 65vh, 650px));
-		left: 16px;
-		right: 16px;
+		margin: 20px 16px 0 16px;
 		font-size: 12px;
 	}
 
 	.connect-divider {
-		top: calc(500vh - 32px);
-		top: calc(500dvh - 32px);
-		left: 16px;
-		right: 16px;
+		width: calc(100% - 32px);
+		margin: 32px auto 0 auto;
 	}
 }

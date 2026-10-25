@@ -125,14 +125,13 @@
 	}
 }
 
-/* Mobile full-frame (Frame 3) */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 	.work-heading {
 		display: block;
-		position: absolute;
-		top: calc(200vh + clamp(110px, 14vh, 140px));
-		top: calc(200dvh + clamp(110px, 14vh, 140px));
-		left: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 44px 20px 16px 20px;
 		font-size: 18px;
 		line-height: 1.35;
 		color: var(--color-ink, #000000);
@@ -142,12 +141,13 @@
 	}
 
 	.work-section {
-		top: calc(200vh + clamp(165px, 21vh, 200px));
-		top: calc(200dvh + clamp(165px, 21vh, 200px));
-		left: 20px;
-		right: 20px;
-		width: calc(100% - 40px);
-		max-width: calc(100% - 40px);
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 20px;
 	}
 
 	.work-intro,
@@ -157,33 +157,33 @@
 	}
 
 	.work-accordion-list {
-		margin-top: 28px;
-		gap: 16px;
+		margin-top: 24px;
+		gap: 0;
+	}
+
+	.work-accordion-item {
+		padding: 14px 0;
+		border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
 	}
 
 	.work-divider {
-		top: calc(300vh - 36px);
-		top: calc(300dvh - 36px);
-		left: 20px;
-		right: 20px;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		width: calc(100% - 40px);
+		margin: 40px auto 0 auto;
 	}
 }
 
 @media (max-width: 400px) {
 	.work-heading {
-		top: calc(200vh + clamp(100px, 13vh, 130px));
-		top: calc(200dvh + clamp(100px, 13vh, 130px));
-		left: 16px;
+		margin: 36px 16px 14px 16px;
 		font-size: 17px;
 	}
 
 	.work-section {
-		top: calc(200vh + clamp(150px, 19vh, 185px));
-		top: calc(200dvh + clamp(150px, 19vh, 185px));
-		left: 16px;
-		right: 16px;
-		width: calc(100% - 32px);
-		max-width: calc(100% - 32px);
+		padding: 0 16px;
 	}
 
 	.work-intro,
@@ -191,15 +191,12 @@
 		font-size: 14px;
 	}
 
-	.work-accordion-list {
-		margin-top: 24px;
-		gap: 14px;
+	.work-accordion-item {
+		padding: 12px 0;
 	}
 
 	.work-divider {
-		top: calc(300vh - 32px);
-		top: calc(300dvh - 32px);
-		left: 16px;
-		right: 16px;
+		width: calc(100% - 32px);
+		margin: 32px auto 0 auto;
 	}
 }

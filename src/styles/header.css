@@ -97,9 +97,12 @@ a.brand-logo:hover {
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 	.site-header {
-		top: clamp(60px, 15vw, 72px);
+		position: relative;
+		top: auto;
+		left: auto;
+		padding-top: clamp(40px, 8vw, 56px);
 		padding-left: 20px;
 		padding-right: 20px;
 		align-items: flex-start;
@@ -135,7 +138,7 @@ a.brand-logo:hover {
 
 @media (max-width: 400px) {
 	.site-header {
-		top: clamp(52px, 14vw, 64px);
+		padding-top: clamp(32px, 8vw, 44px);
 		padding-left: 16px;
 		padding-right: 16px;
 	}
