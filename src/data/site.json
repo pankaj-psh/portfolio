@@ -5,7 +5,7 @@
 	"hero": {
 		"greeting": "Hi, I'm Pankaj",
 		"name": "Sharma.",
-		"bio": "Based in  Ahmedabad 🇮🇳 ,\nI build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next."
+		"bio": "Based in Ahmedabad 🇮🇳 ,\nI build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next."
 	},
 	"aboutShort": {
 		"title": "About",
