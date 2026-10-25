@@ -218,35 +218,42 @@
 /* Mobile responsive */
 @media (max-width: 768px) {
 	.footer-section {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 100vh;
+		min-height: 100dvh;
+		box-sizing: border-box;
 		position: relative;
 		top: auto;
 		left: auto;
 		right: auto;
 		width: 100%;
 		max-width: 100%;
-		margin-top: 48px;
-		padding: 0 20px 48px 20px;
+		margin-top: 0;
+		padding: clamp(48px, 8vh, 72px) 20px clamp(32px, 5vh, 48px) 20px;
 	}
 
 	.footer-name {
-		font-size: clamp(38px, 11vw, 56px);
-		margin-bottom: 28px;
+		font-size: clamp(42px, 11vw, 60px);
+		margin-bottom: clamp(24px, 3.5vh, 36px);
 	}
 
 	.footer-nav-grid {
 		display: flex;
 		flex-direction: column;
-		gap: 28px;
-		margin-bottom: 36px;
+		gap: clamp(20px, 3vh, 32px);
+		margin-bottom: auto;
+		padding-bottom: 24px;
 	}
 
 	.footer-col {
-		gap: 10px;
+		gap: 12px;
 	}
 
 	.footer-social-link,
 	.footer-nav-link {
-		font-size: 15px;
+		font-size: 16px;
 	}
 
 	.footer-last-update {
@@ -257,33 +264,28 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 14px;
-		padding-bottom: 24px;
+		padding-bottom: 0;
+		margin-top: auto;
 	}
 
 	.footer-bottom-links {
 		flex-wrap: wrap;
-		gap: 16px;
+		gap: 18px;
 	}
 }
 
 @media (max-width: 400px) {
 	.footer-section {
-		margin-top: 40px;
-		padding: 0 16px 40px 16px;
+		padding: 40px 16px 28px 16px;
 	}
-
 	.footer-name {
-		font-size: clamp(32px, 10vw, 40px);
-		margin-bottom: 24px;
+		font-size: 36px;
 	}
-
 	.footer-nav-grid {
-		gap: 24px;
-		margin-bottom: 32px;
+		gap: 20px;
 	}
-
 	.footer-social-link,
 	.footer-nav-link {
-		font-size: 14px;
+		font-size: 14.5px;
 	}
 }

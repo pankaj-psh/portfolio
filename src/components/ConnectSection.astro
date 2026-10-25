@@ -17,51 +17,53 @@ const {
 } = site.connectSection || {};
 ---
 
-<h2 class="connect-heading" id="connect">{title}</h2>
+<div class="connect-frame" id="connect">
+	<h2 class="connect-heading">{title}</h2>
 
-<section class="connect-section" aria-label="Connect and Contact Form">
-	<h3 class="connect-title">{heading}</h3>
+	<section class="connect-section" aria-label="Connect and Contact Form">
+		<h3 class="connect-title">{heading}</h3>
 
-	<form class="connect-form" id="connect-form" onsubmit="return false;" novalidate>
-		<div class="connect-field-wrap" id="contact-field-wrap">
+		<form class="connect-form" id="connect-form" onsubmit="return false;" novalidate>
+			<div class="connect-field-wrap" id="contact-field-wrap">
+				<input
+					type="text"
+					name="contact"
+					id="connect-contact"
+					class="connect-input"
+					placeholder={contactPlaceholder}
+					aria-label="Your contact"
+					autocomplete="off"
+				/>
+				<span class="connect-error-label" id="contact-error">Please fill out this field.</span>
+			</div>
+
 			<input
 				type="text"
-				name="contact"
-				id="connect-contact"
+				name="name"
 				class="connect-input"
-				placeholder={contactPlaceholder}
-				aria-label="Your contact"
+				placeholder={namePlaceholder}
+				aria-label="Your good name"
 				autocomplete="off"
 			/>
-			<span class="connect-error-label" id="contact-error">Please fill out this field.</span>
-		</div>
 
-		<input
-			type="text"
-			name="name"
-			class="connect-input"
-			placeholder={namePlaceholder}
-			aria-label="Your good name"
-			autocomplete="off"
-		/>
+			<textarea
+				name="message"
+				class="connect-textarea"
+				placeholder={messagePlaceholder}
+				aria-label="Your message"
+				rows="4"
+			></textarea>
 
-		<textarea
-			name="message"
-			class="connect-textarea"
-			placeholder={messagePlaceholder}
-			aria-label="Your message"
-			rows="4"
-		></textarea>
+			<button type="button" id="connect-submit-btn" class="connect-submit-btn">
+				{submitText}
+			</button>
+		</form>
+	</section>
 
-		<button type="button" id="connect-submit-btn" class="connect-submit-btn">
-			{submitText}
-		</button>
-	</form>
-</section>
+	<p class="connect-footnote">{footnote}</p>
 
-<p class="connect-footnote">{footnote}</p>
-
-<div class="connect-divider" aria-hidden="true"></div>
+	<div class="connect-divider" aria-hidden="true"></div>
+</div>
 
 <script is:inline>
 	function syncConnectDivider() {

@@ -10,25 +10,27 @@ import '../styles/hero.css';
 const bioParts = site.hero.bio.split('🇮🇳');
 ---
 
-<section class="hero-section" aria-label="Introduction">
-	<h1 class="hero-headline">
-		{site.hero.greeting}<br />{site.hero.name}
-	</h1>
-	<p class="hero-bio">
-		{bioParts.length > 1 ? (
-			<>
-				{bioParts[0].trimEnd()}&nbsp;<Image src={indiaFlag} alt="India Flag" class="hero-flag" width={22} height={22} loading="eager" />{bioParts[1]}
-			</>
-		) : (
-			site.hero.bio
-		)}
-	</p>
-	<div class="hero-time-wrap">
-		<time id="ist-clock" class="hero-time" aria-label="Current time in Indian Standard Time">--:--:-- IST</time>
-	</div>
-</section>
+<div class="hero-frame">
+	<section class="hero-section" aria-label="Introduction">
+		<h1 class="hero-headline">
+			{site.hero.greeting}<br />{site.hero.name}
+		</h1>
+		<p class="hero-bio">
+			{bioParts.length > 1 ? (
+				<>
+					{bioParts[0].trimEnd()}&nbsp;<Image src={indiaFlag} alt="India Flag" class="hero-flag" width={22} height={22} loading="eager" />{bioParts[1]}
+				</>
+			) : (
+				site.hero.bio
+			)}
+		</p>
+		<div class="hero-time-wrap">
+			<time id="ist-clock" class="hero-time" aria-label="Current time in Indian Standard Time">--:--:-- IST</time>
+		</div>
+	</section>
 
-<div class="hero-divider" aria-hidden="true"></div>
+	<div class="hero-divider" aria-hidden="true"></div>
+</div>
 
 <script is:inline>
 	function updateIstClock() {

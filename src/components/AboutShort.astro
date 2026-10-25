@@ -6,18 +6,20 @@ import site from '../data/site.json';
 import '../styles/about.css';
 ---
 
-<h2 class="about-heading" id="about">{site.aboutShort.title || 'About'}</h2>
+<div class="about-frame" id="about">
+	<h2 class="about-heading">{site.aboutShort.title || 'About'}</h2>
 
-<section class="about-section" aria-label="About Pankaj Sharma">
-	<p class="about-text">
-		{site.aboutShort.p1}
-	</p>
-	<p class="about-text">
-		{site.aboutShort.p2}
-	</p>
-</section>
+	<section class="about-section" aria-label="About Pankaj Sharma">
+		<p class="about-text">
+			{site.aboutShort.p1}
+		</p>
+		<p class="about-text">
+			{site.aboutShort.p2}
+		</p>
+	</section>
 
-<div class="about-divider" aria-hidden="true"></div>
+	<div class="about-divider" aria-hidden="true"></div>
+</div>
 
 <script is:inline>
 	function syncAboutDivider() {

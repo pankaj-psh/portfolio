@@ -7,31 +7,33 @@ import site from '../data/site.json';
 import '../styles/work.css';
 ---
 
-<h2 class="work-heading" id="work">{site.workSection.title || 'Work'}</h2>
+<div class="work-frame" id="work">
+	<h2 class="work-heading">{site.workSection.title || 'Work'}</h2>
 
-<section class="work-section" aria-label="Work and Projects">
-	<p class="work-intro">
-		{site.workSection.intro}
-	</p>
+	<section class="work-section" aria-label="Work and Projects">
+		<p class="work-intro">
+			{site.workSection.intro}
+		</p>
 
-	<div class="work-accordion-list" role="list">
-		{site.workSection.categories.map((cat) => (
-			<div class="work-accordion-item" role="listitem" tabindex="0">
-				<div class="work-item-text">
-					<span class="work-item-num">{cat.id}.</span>
-					<span class="work-item-title">{cat.name}</span>
+		<div class="work-accordion-list" role="list">
+			{site.workSection.categories.map((cat) => (
+				<div class="work-accordion-item" role="listitem" tabindex="0">
+					<div class="work-item-text">
+						<span class="work-item-num">{cat.id}.</span>
+						<span class="work-item-title">{cat.name}</span>
+					</div>
+					<span class="work-item-arrow" aria-hidden="true">
+						<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L9 9L17 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</span>
 				</div>
-				<span class="work-item-arrow" aria-hidden="true">
-					<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M1 1L9 9L17 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</span>
-			</div>
-		))}
-	</div>
-</section>
+			))}
+		</div>
+	</section>
 
-<div class="work-divider" aria-hidden="true"></div>
+	<div class="work-divider" aria-hidden="true"></div>
+</div>
 
 <script is:inline>
 	function syncWorkDivider() {

@@ -7,21 +7,23 @@ import site from '../data/site.json';
 import '../styles/experience.css';
 ---
 
-<h2 class="experience-heading" id="experience">{site.experienceSection.title || 'Experience'}</h2>
+<div class="experience-frame" id="experience">
+	<h2 class="experience-heading">{site.experienceSection.title || 'Experience'}</h2>
 
-<section class="experience-section" aria-label="Professional Experience">
-	{site.experienceSection.items.map((item) => (
-		<article class="experience-item">
-			<div class="experience-header">
-				<span class="experience-num">{item.id}.</span>
-				<span class="experience-role-period">{item.role} · {item.period}</span>
-			</div>
-			<p class="experience-desc">{item.description}</p>
-		</article>
-	))}
-</section>
+	<section class="experience-section" aria-label="Professional Experience">
+		{site.experienceSection.items.map((item) => (
+			<article class="experience-item">
+				<div class="experience-header">
+					<span class="experience-num">{item.id}.</span>
+					<span class="experience-role-period">{item.role} · {item.period}</span>
+				</div>
+				<p class="experience-desc">{item.description}</p>
+			</article>
+		))}
+	</section>
 
-<div class="experience-divider" aria-hidden="true"></div>
+	<div class="experience-divider" aria-hidden="true"></div>
+</div>
 
 <script is:inline>
 	function syncExperienceDivider() {

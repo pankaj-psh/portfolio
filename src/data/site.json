@@ -5,7 +5,7 @@
 	"hero": {
 		"greeting": "Hi, I'm Pankaj",
 		"name": "Sharma.",
-		"bio": "Based in Ahmedabad 🇮🇳 ,\nI build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next."
+		"bio": "Based in Ahmedabad 🇮🇳,\nI build scalable, production-grade Software with a focus on reliability and zero-runtime-error systems. Beyond code, I'm into chess, fitness, and logical thinking — always researching, reading TLDRs, collaborating with teams, and exploring DevOps and AI integration to build what's next."
 	},
 	"aboutShort": {
 		"title": "About",
@@ -16,10 +16,22 @@
 		"title": "Work",
 		"intro": "I focus on reliable production software—from multi-portal architecture and automated deployments to processing and managing large-scale data workflows.",
 		"categories": [
-			{ "id": "01", "name": "Professional Contributions" },
-			{ "id": "02", "name": "Learning Projects" },
-			{ "id": "03", "name": "Data Operations & Analytics" },
-			{ "id": "04", "name": "Technical Writing & System Docs" }
+			{
+				"id": "01",
+				"name": "Professional Contributions"
+			},
+			{
+				"id": "02",
+				"name": "Learning Projects"
+			},
+			{
+				"id": "03",
+				"name": "Data Operations & Analytics"
+			},
+			{
+				"id": "04",
+				"name": "Technical Writing & System Docs"
+			}
 		]
 	},
 	"experienceSection": {
@@ -57,27 +69,80 @@
 	"footerSection": {
 		"name": "Pankaj Sharma.",
 		"socials": [
-			{ "name": "Github", "icon": "GitHub", "url": "https://github.com/pankaj-psh" },
-			{ "name": "Twitter", "icon": "X", "url": "https://x.com" },
-			{ "name": "LinkedIn", "icon": "LinkedIn", "url": "https://linkedin.com/in/pankaj-psh" },
-			{ "name": "Discord", "icon": "Discord", "url": "https://discord.com" }
+			{
+				"name": "Github",
+				"icon": "GitHub",
+				"url": "https://github.com/pankaj-psh"
+			},
+			{
+				"name": "Twitter",
+				"icon": "X",
+				"url": "https://x.com"
+			},
+			{
+				"name": "LinkedIn",
+				"icon": "LinkedIn",
+				"url": "https://linkedin.com/in/pankaj-psh"
+			},
+			{
+				"name": "Discord",
+				"icon": "Discord",
+				"url": "https://discord.com"
+			}
 		],
 		"primaryNav": [
-			{ "name": "Home", "url": "#", "active": true },
-			{ "name": "Work", "url": "#work", "active": false },
-			{ "name": "Projects", "url": "#projects", "active": false },
-			{ "name": "About", "url": "#about", "active": false }
+			{
+				"name": "Home",
+				"url": "#",
+				"active": true
+			},
+			{
+				"name": "Work",
+				"url": "#work",
+				"active": false
+			},
+			{
+				"name": "Projects",
+				"url": "#projects",
+				"active": false
+			},
+			{
+				"name": "About",
+				"url": "#about",
+				"active": false
+			}
 		],
 		"secondaryNav": [
-			{ "name": "Contact", "url": "#connect", "active": false },
-			{ "name": "Resume", "url": "/portfolio/Pankaj_Sharma_.docx", "active": false },
-			{ "name": "Blogs", "url": "https://pankaj-psh.github.io/blogs/", "active": false }
+			{
+				"name": "Contact",
+				"url": "#connect",
+				"active": false
+			},
+			{
+				"name": "Resume",
+				"url": "/portfolio/Pankaj_Sharma_.docx",
+				"active": false
+			},
+			{
+				"name": "Blogs",
+				"url": "https://pankaj-psh.github.io/blogs/",
+				"active": false
+			}
 		],
 		"lastUpdate": "2026-10-20",
 		"bottomLinks": [
-			{ "name": "Report / Suggestion", "url": "#" },
-			{ "name": "Hire me", "url": "#" },
-			{ "name": "Hackthon", "url": "#" }
+			{
+				"name": "Report / Suggestion",
+				"url": "#"
+			},
+			{
+				"name": "Hire me",
+				"url": "#"
+			},
+			{
+				"name": "Hackthon",
+				"url": "#"
+			}
 		]
 	}
 }
