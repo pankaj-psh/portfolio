@@ -10,6 +10,7 @@ import AboutShort from '../components/AboutShort.astro';
 import WorkSection from '../components/WorkSection.astro';
 import ExperienceSection from '../components/ExperienceSection.astro';
 import ConnectSection from '../components/ConnectSection.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
@@ -20,7 +21,7 @@ import ConnectSection from '../components/ConnectSection.astro';
 		<WorkSection />
 		<ExperienceSection />
 		<ConnectSection />
-		<!-- Future sections will mount here -->
+		<Footer />
 	</main>
 </Layout>
 
@@ -28,10 +29,23 @@ import ConnectSection from '../components/ConnectSection.astro';
 	.page-canvas {
 		width: 100%;
 		max-width: 1440px;
-		min-height: 4350px;
+		min-height: 4370px;
 		margin: 0 auto;
 		position: relative;
 		box-sizing: border-box;
 		background: transparent !important;
+	}
+
+	@media (max-width: 1440px) {
+		.page-canvas {
+			min-height: clamp(3000px, 303.4vw, 4370px);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.page-canvas {
+			min-height: calc(500vh + 160px);
+			min-height: calc(500dvh + 160px);
+		}
 	}
 </style>

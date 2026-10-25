@@ -1,0 +1,263 @@
+/* Footer Section */
+.footer-section {
+	position: absolute;
+	top: 4050px;
+	left: 200px;
+	width: 932px;
+	max-width: calc(100% - 220px);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Big Name Title */
+.footer-name {
+	margin: 0 0 24px 0;
+	font-family: 'Cormorant Garamond', Georgia, serif;
+	font-size: 110px;
+	font-weight: 400;
+	line-height: 0.95;
+	letter-spacing: 0;
+	color: var(--color-ink, #000000);
+}
+
+/* 3-Column Navigation Grid */
+.footer-nav-grid {
+	display: grid;
+	grid-template-columns: 155px 108px auto;
+	align-items: flex-start;
+	margin-bottom: 28px;
+}
+
+.footer-col {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* Social link (Column 1) */
+.footer-social-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	font-family: 'Jost', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--color-ink, #000000);
+	text-decoration: none;
+	transition: opacity 0.15s ease;
+}
+
+.footer-social-link:hover {
+	opacity: 0.7;
+}
+
+.footer-social-icon {
+	width: 18px;
+	height: 18px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.footer-social-icon img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* Nav links (Home, Work, Projects, About, Contact, Resume, Blogs) */
+.footer-nav-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	font-family: 'Jost', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--color-ink, #000000);
+	text-decoration: none;
+	cursor: pointer;
+	/* No font, weight, or opacity change on hover */
+	opacity: 1;
+	transition: none;
+}
+
+.footer-nav-link:hover {
+	opacity: 1 !important;
+	color: var(--color-ink, #000000) !important;
+	text-decoration: none;
+}
+
+.footer-nav-text {
+	font-family: 'Jost', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	color: inherit;
+	line-height: 1;
+}
+
+/* Radio-style SVG indicator — perfectly centered mathematical vector */
+.footer-radio {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	flex-shrink: 0;
+	vertical-align: middle;
+	color: var(--color-ink, #000000);
+	overflow: visible;
+}
+
+.footer-radio-ring {
+	stroke: currentColor;
+	fill: none;
+}
+
+.footer-radio-dot {
+	fill: currentColor;
+	opacity: 0;
+	transition: opacity 0.12s ease;
+}
+
+/* Default state: active link (Home) shows dot */
+.footer-nav-link[data-active="true"] .footer-radio-dot {
+	opacity: 1;
+}
+
+/* When hover is active in nav grid, hide active link's dot (unless active itself is hovered) */
+.footer-nav-grid.has-hover .footer-nav-link[data-active="true"] .footer-radio-dot,
+.footer-nav-grid:has(.footer-nav-link:hover) .footer-nav-link[data-active="true"] .footer-radio-dot {
+	opacity: 0;
+}
+
+/* The hovered link always displays the dot */
+.footer-nav-link:hover .footer-radio-dot,
+.footer-nav-link.is-hovered .footer-radio-dot {
+	opacity: 1 !important;
+}
+
+/* Sub-footer bottom bar */
+.footer-bottom {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	font-family: 'Jost', sans-serif;
+	font-size: 13px;
+	color: var(--color-muted, rgba(0, 0, 0, 0.5));
+	box-sizing: border-box;
+	padding-bottom: 0;
+}
+
+.footer-last-update {
+	margin: 0;
+	letter-spacing: 0;
+	width: 155px;
+	flex-shrink: 0;
+}
+
+.footer-bottom-links {
+	display: flex;
+	gap: 36px;
+}
+
+.footer-bottom-link {
+	color: inherit;
+	text-decoration: none;
+	transition: opacity 0.15s ease;
+}
+
+.footer-bottom-link:hover {
+	opacity: 0.8;
+}
+
+/* Responsive scaling for viewports below 1440px */
+@media (max-width: 1440px) {
+	.footer-section {
+		top: clamp(2780px, 281.2vw, 4050px);
+		left: clamp(20px, 13.88vw, 200px);
+		width: min(932px, calc(100% - clamp(40px, 15vw, 220px)));
+	}
+
+	.footer-name {
+		font-size: clamp(48px, 7.6vw, 110px);
+		margin-bottom: clamp(16px, 1.8vw, 24px);
+	}
+
+	.footer-nav-grid {
+		grid-template-columns: clamp(120px, 10.76vw, 155px) clamp(90px, 7.5vw, 108px) auto;
+		margin-bottom: clamp(18px, 2.2vw, 28px);
+	}
+
+	.footer-social-link,
+	.footer-nav-link {
+		font-size: clamp(14px, 1.11vw, 16px);
+		gap: clamp(8px, 0.83vw, 12px);
+	}
+
+	.footer-bottom {
+		font-size: clamp(11px, 0.9vw, 13px);
+	}
+
+	.footer-last-update {
+		width: clamp(120px, 10.76vw, 155px);
+	}
+
+	.footer-bottom-links {
+		gap: clamp(18px, 2.5vw, 36px);
+	}
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+	.footer-section {
+		top: calc(500vh + clamp(200px, 26vh, 250px));
+		top: calc(500dvh + clamp(200px, 26vh, 250px));
+		left: 20px;
+		right: 28px;
+		width: calc(100% - 48px);
+		max-width: calc(100% - 48px);
+	}
+
+	.footer-name {
+		font-size: clamp(38px, 11vw, 60px);
+		margin-bottom: 32px;
+	}
+
+	.footer-nav-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		margin-bottom: 48px;
+	}
+
+	.footer-last-update {
+		width: auto;
+	}
+
+	.footer-bottom {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+		padding-bottom: 40px;
+	}
+
+	.footer-bottom-links {
+		flex-wrap: wrap;
+		gap: 18px;
+	}
+}
+
+@media (max-width: 400px) {
+	.footer-section {
+		top: calc(500vh + clamp(190px, 25vh, 240px));
+		top: calc(500dvh + clamp(190px, 25vh, 240px));
+		left: 18px;
+		right: 28px;
+		width: calc(100% - 46px);
+		max-width: calc(100% - 46px);
+	}
+
+	.footer-name {
+		font-size: 36px;
+	}
+}

@@ -53,5 +53,31 @@
 		"messagePlaceholder": "{Small Message}",
 		"submitText": "Submit",
 		"footnote": "*The best way to connect me is by email"
+	},
+	"footerSection": {
+		"name": "Pankaj Sharma.",
+		"socials": [
+			{ "name": "Github", "icon": "GitHub", "url": "https://github.com/pankaj-psh" },
+			{ "name": "Twitter", "icon": "X", "url": "https://x.com" },
+			{ "name": "LinkedIn", "icon": "LinkedIn", "url": "https://linkedin.com/in/pankaj-psh" },
+			{ "name": "Discord", "icon": "Discord", "url": "https://discord.com" }
+		],
+		"primaryNav": [
+			{ "name": "Home", "url": "#", "active": true },
+			{ "name": "Work", "url": "#work", "active": false },
+			{ "name": "Projects", "url": "#projects", "active": false },
+			{ "name": "About", "url": "#about", "active": false }
+		],
+		"secondaryNav": [
+			{ "name": "Contact", "url": "#connect", "active": false },
+			{ "name": "Resume", "url": "/portfolio/Pankaj_Sharma_.docx", "active": false },
+			{ "name": "Blogs", "url": "https://pankaj-psh.github.io/blogs/", "active": false }
+		],
+		"lastUpdate": "2026-10-20",
+		"bottomLinks": [
+			{ "name": "Report / Suggestion", "url": "#" },
+			{ "name": "Hire me", "url": "#" },
+			{ "name": "Hackthon", "url": "#" }
+		]
 	}
 }

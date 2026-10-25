@@ -103,7 +103,7 @@
 }
 
 .connect-textarea {
-	min-height: 175px;
+	min-height: 140px;
 	resize: vertical;
 	line-height: 1.4;
 }
@@ -126,7 +126,7 @@
 /* Footnote */
 .connect-footnote {
 	position: absolute;
-	top: 4040px;
+	top: 3960px;
 	left: 200px;
 	margin: 0;
 	font-family: 'Jost', sans-serif;
@@ -138,7 +138,7 @@
 /* Divider below Connect */
 .connect-divider {
 	position: absolute;
-	top: 4140px;
+	top: 4010px;
 	left: 200px;
 	right: 177px;
 	height: 1px;
@@ -172,7 +172,7 @@
 	}
 
 	.connect-textarea {
-		min-height: clamp(120px, 12vw, 175px);
+		min-height: clamp(100px, 10vw, 140px);
 	}
 
 	.connect-submit-btn {
@@ -181,13 +181,13 @@
 	}
 
 	.connect-footnote {
-		top: clamp(2700px, 280.5vw, 4040px);
+		top: clamp(2720px, 275vw, 3960px);
 		left: clamp(20px, 13.88vw, 200px);
 		font-size: clamp(12px, 0.97vw, 14px);
 	}
 
 	.connect-divider {
-		top: clamp(2780px, 287.5vw, 4140px);
+		top: clamp(2760px, 278.5vw, 4010px);
 		left: clamp(20px, 13.88vw, 200px);
 		right: clamp(20px, 12.29vw, 177px);
 	}

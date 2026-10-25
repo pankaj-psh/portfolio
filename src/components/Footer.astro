@@ -1,0 +1,135 @@
+---
+/**
+ * Footer Component — Big Name, 3-column Navigation, and Sub-footer
+ * Frame: Aligned with Figma Desktop - 1
+ */
+import { Image } from 'astro:assets';
+import site from '../data/site.json';
+import GitHubIcon from '../assets/icon/GitHub.svg';
+import XIcon from '../assets/icon/X.svg';
+import LinkedInIcon from '../assets/icon/LinkedIn.svg';
+import DiscordIcon from '../assets/icon/Discord.svg';
+import '../styles/footer.css';
+
+const {
+	name = 'Pankaj Sharma.',
+	socials = [],
+	primaryNav = [],
+	secondaryNav = [],
+	lastUpdate = '2026-10-20',
+	bottomLinks = [],
+} = site.footerSection || {};
+
+const socialIcons: Record<string, ImageMetadata> = {
+	GitHub: GitHubIcon,
+	X: XIcon,
+	LinkedIn: LinkedInIcon,
+	Discord: DiscordIcon,
+};
+---
+
+<footer class="footer-section" aria-label="Site Footer">
+	<h2 class="footer-name">{name}</h2>
+
+	<div class="footer-nav-grid">
+		<!-- Column 1: Socials with Icons -->
+		<div class="footer-col" aria-label="Social Links">
+			{socials.map((item: { name: string; icon: string; url: string }) => (
+				<a href={item.url} class="footer-social-link" target="_blank" rel="noopener noreferrer">
+					<span class="footer-social-icon">
+						{socialIcons[item.icon] && (
+							<Image src={socialIcons[item.icon]} alt="" width={18} height={18} loading="lazy" />
+						)}
+					</span>
+					<span>{item.name}</span>
+				</a>
+			))}
+		</div>
+
+		<!-- Column 2: Primary Navigation with Radio Indicator -->
+		<nav class="footer-col" aria-label="Primary Navigation">
+			{primaryNav.map((item: { name: string; url: string; active?: boolean }) => (
+				<a href={item.url} class="footer-nav-link" data-active={item.active ? "true" : "false"}>
+					<svg class="footer-radio" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+						<circle class="footer-radio-ring" cx="5" cy="5" r="4.5" stroke="currentColor" stroke-width="0.8" />
+						<circle class="footer-radio-dot" cx="5" cy="5" r="3" fill="currentColor" />
+					</svg>
+					<span class="footer-nav-text">{item.name}</span>
+				</a>
+			))}
+		</nav>
+
+		<!-- Column 3: Secondary Navigation with Radio Indicator -->
+		<nav class="footer-col" aria-label="Secondary Navigation">
+			{secondaryNav.map((item: { name: string; url: string; active?: boolean }) => (
+				<a href={item.url} class="footer-nav-link" data-active={item.active ? "true" : "false"}>
+					<svg class="footer-radio" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+						<circle class="footer-radio-ring" cx="5" cy="5" r="4.5" stroke="currentColor" stroke-width="0.8" />
+						<circle class="footer-radio-dot" cx="5" cy="5" r="3" fill="currentColor" />
+					</svg>
+					<span class="footer-nav-text">{item.name}</span>
+				</a>
+			))}
+		</nav>
+	</div>
+
+	<!-- Sub-footer Bottom Bar -->
+	<div class="footer-bottom">
+		<p class="footer-last-update">Last update : {lastUpdate}</p>
+		<div class="footer-bottom-links">
+			{bottomLinks.map((item: { name: string; url: string }) => (
+				<a href={item.url} class="footer-bottom-link">{item.name}</a>
+			))}
+		</div>
+	</div>
+</footer>
+
+<script is:inline>
+	function syncFooterAlignment() {
+		const footer = document.querySelector('.footer-section');
+		if (!footer) return;
+		if (window.innerWidth <= 640) {
+			footer.style.left = '';
+			return;
+		}
+		const logo = document.querySelector('.brand-logo');
+		const canvas = document.querySelector('.page-canvas');
+		if (!canvas || !logo) return;
+
+		const canvasRect = canvas.getBoundingClientRect();
+		const logoRect = logo.getBoundingClientRect();
+		const leftOffset = Math.max(0, logoRect.left - canvasRect.left);
+		footer.style.left = `${leftOffset}px`;
+	}
+
+	function setupFooterNavHover() {
+		const navGrid = document.querySelector('.footer-nav-grid');
+		const navLinks = document.querySelectorAll('.footer-nav-link');
+		if (!navGrid || !navLinks.length) return;
+
+		navLinks.forEach((link) => {
+			link.addEventListener('mouseenter', () => {
+				navGrid.classList.add('has-hover');
+				navLinks.forEach((l) => l.classList.remove('is-hovered'));
+				link.classList.add('is-hovered');
+			});
+		});
+
+		navGrid.addEventListener('mouseleave', () => {
+			navGrid.classList.remove('has-hover');
+			navLinks.forEach((l) => l.classList.remove('is-hovered'));
+		});
+	}
+
+	window.addEventListener('resize', syncFooterAlignment);
+	window.addEventListener('load', () => {
+		syncFooterAlignment();
+		setupFooterNavHover();
+	});
+	document.addEventListener('DOMContentLoaded', () => {
+		syncFooterAlignment();
+		setupFooterNavHover();
+	});
+	syncFooterAlignment();
+	setupFooterNavHover();
+</script>
