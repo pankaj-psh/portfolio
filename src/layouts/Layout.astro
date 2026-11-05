@@ -9,6 +9,11 @@ import site from '../data/site.json';
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
+
+interface Props {
+	customScrollDots?: boolean;
+}
+const { customScrollDots = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -42,7 +47,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 		</script>
 	</head>
 
-	<body>
+	<body data-custom-scroll-dots={customScrollDots ? 'true' : undefined}>
 		<slot />
 
 		<!-- Custom scroll indicator -->
@@ -95,57 +100,65 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 </style>
 
 <script is:inline>
-	const dots = document.querySelectorAll('.scroll-dot');
-	const total = dots.length;
+	(function () {
+		if (document.body && document.body.dataset.customScrollDots === 'true') return;
 
-	let targetIndex = 0;
-	let currentIndex = 0;
-	let rafId = null;
+		const dots = document.querySelectorAll('.scroll-dot');
+		const total = dots.length;
 
-	function getTargetIndex() {
-		const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-		const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-		return progress * (total - 1);
-	}
+		let targetIndex = 0;
+		let currentIndex = 0;
+		let rafId = null;
 
-	function setActive(index) {
-		const rounded = Math.round(index);
-		dots.forEach((dot, i) => {
-			const isActive = i === rounded;
-			const dist = Math.abs(i - index);
-			const xOffset = Math.min(0, dist * dist * 1.5 - 4);
-			const scale = isActive ? 2.2 : 1;
-			dot.style.transform = `translateX(${xOffset}px) scale(${scale})`;
-			dot.classList.toggle('active', isActive);
-		});
-	}
-
-	function animate() {
-		const diff = targetIndex - currentIndex;
-		if (Math.abs(diff) < 0.01) {
-			currentIndex = targetIndex;
-			setActive(currentIndex);
-			rafId = null;
-			return;
-		}
-		currentIndex += diff * 0.12;
-		setActive(currentIndex);
-		rafId = requestAnimationFrame(animate);
-	}
-
-	window.addEventListener('scroll', () => {
-		if (window.innerWidth <= 768) return;
-		targetIndex = getTargetIndex();
-		if (!rafId) rafId = requestAnimationFrame(animate);
-	}, { passive: true });
-
-	dots.forEach((dot, i) => {
-		dot.addEventListener('click', () => {
+		function getTargetIndex() {
 			const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-			const scrollTo = (i / (total - 1)) * maxScroll;
-			window.scrollTo({ top: scrollTo, behavior: 'smooth' });
-		});
-	});
+			const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+			return progress * (total - 1);
+		}
 
-	if (window.innerWidth > 768) setActive(0);
+		function setActive(index) {
+			const rounded = Math.round(index);
+			dots.forEach((dot, i) => {
+				const isActive = i === rounded;
+				const dist = Math.abs(i - index);
+				const xOffset = Math.min(0, dist * dist * 1.5 - 4);
+				const scale = isActive ? 2.2 : 1;
+				dot.style.transform = `translateX(${xOffset}px) scale(${scale})`;
+				dot.classList.toggle('active', isActive);
+			});
+		}
+
+		function animate() {
+			const diff = targetIndex - currentIndex;
+			if (Math.abs(diff) < 0.01) {
+				currentIndex = targetIndex;
+				setActive(currentIndex);
+				rafId = null;
+				return;
+			}
+			currentIndex += diff * 0.12;
+			setActive(currentIndex);
+			rafId = requestAnimationFrame(animate);
+		}
+
+		window.addEventListener(
+			'scroll',
+			() => {
+				if (window.innerWidth <= 768) return;
+				targetIndex = getTargetIndex();
+				if (!rafId) rafId = requestAnimationFrame(animate);
+			},
+			{ passive: true }
+		);
+
+		dots.forEach((dot, i) => {
+			dot.addEventListener('click', () => {
+				const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+				const scrollTo = (i / (total - 1)) * maxScroll;
+				window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+			});
+		});
+
+		if (window.innerWidth > 768) setActive(0);
+	})();
 </script>

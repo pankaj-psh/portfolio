@@ -1,0 +1,939 @@
+---
+/**
+ * Tests Page — Interactive Scrollbar Dot Animation Lab
+ * Base route: http://localhost:4321/portfolio/tests
+ */
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout customScrollDots={true}>
+	<!-- Top Controller Navigation: Buttons 1 to 9 -->
+	<header class="test-controls-bar">
+		<div class="test-controls-container">
+			<span class="test-label">ANIMATION:</span>
+			<nav class="test-btn-group" aria-label="Scroll Animation Selection">
+				{Array.from({ length: 9 }).map((_, i) => {
+					const num = i + 1;
+					return (
+						<button
+							type="button"
+							class={`test-effect-btn ${num === 5 ? 'active' : ''}`}
+							data-effect={num}
+							aria-label={`Select animation ${num}`}
+						>
+							{num}
+						</button>
+					);
+				})}
+			</nav>
+			<span class="active-effect-name" id="effect-name-display">
+				Slot 05: Snake Game (Full Screen)
+			</span>
+			<button type="button" id="auto-btn" class="auto-action-btn" title="Toggle Auto-Pilot Mode">
+				🤖 Auto: OFF
+			</button>
+			<button type="button" id="replay-btn" class="replay-action-btn" title="Restart the game">
+				↺ Restart
+			</button>
+		</div>
+	</header>
+
+	<!-- Page Canvas: Identical scroll height to normal portfolio -->
+	<main class="page-canvas">
+		<!-- Playable Snake Game Arena -->
+		<div id="snake-arena" class="snake-arena">
+			<div class="snake-hud-top">
+				<span>SCORE: <strong id="snake-score-val" class="snake-score-val">0</strong></span>
+				<span>MAX LENGTH: <strong>59</strong></span>
+			</div>
+			<div class="snake-hud-bottom">
+				<span>↑ ↓ ← → or W A S D to Steer • Click [🤖 Auto] for AI Pilot • Space or [↺ Restart] to Reset</span>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	/* Floating top controls */
+	.test-controls-bar {
+		position: fixed;
+		top: 16px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 2000;
+		background: rgba(18, 18, 20, 0.85);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 999px;
+		padding: 6px 16px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+	}
+
+	.test-controls-container {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		font-family: 'Jost', system-ui, sans-serif;
+	}
+
+	.test-label {
+		font-size: 11px;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+		font-weight: 500;
+	}
+
+	.test-btn-group {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.test-effect-btn {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+		font-family: 'Jost', system-ui, sans-serif;
+		font-size: 13px;
+		font-weight: 500;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+		padding: 0;
+	}
+
+	.test-effect-btn:hover {
+		background: rgba(255, 255, 255, 0.15);
+		transform: translateY(-1px);
+	}
+
+	.test-effect-btn.active {
+		background: #f59794;
+		border-color: #f59794;
+		color: #0d0d0d;
+		font-weight: 600;
+		box-shadow: 0 0 14px rgba(245, 151, 148, 0.45);
+	}
+
+	.active-effect-name {
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.75);
+		padding-left: 8px;
+		border-left: 1px solid rgba(255, 255, 255, 0.12);
+		white-space: nowrap;
+	}
+
+	.auto-action-btn {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		color: #ffffff;
+		font-family: 'Jost', sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		padding: 4px 10px;
+		border-radius: 999px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		transition: all 0.2s ease;
+	}
+
+	.auto-action-btn:hover {
+		background: rgba(255, 255, 255, 0.18);
+	}
+
+	.auto-action-btn.active {
+		background: #f59794;
+		border-color: #f59794;
+		color: #0d0d0d;
+		font-weight: 600;
+		box-shadow: 0 0 12px rgba(245, 151, 148, 0.5);
+	}
+
+	.replay-action-btn {
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+		font-family: 'Jost', sans-serif;
+		font-size: 12px;
+		padding: 4px 10px;
+		border-radius: 999px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		transition: all 0.2s ease;
+	}
+
+	.replay-action-btn:hover {
+		background: #f59794;
+		border-color: #f59794;
+		color: #0d0d0d;
+	}
+
+	/* Canvas identical to normal portfolio */
+	.page-canvas {
+		width: 100%;
+		max-width: 1440px;
+		min-height: 4370px;
+		margin: 0 auto;
+		position: relative;
+		box-sizing: border-box;
+		background: transparent !important;
+	}
+
+	@media (max-width: 1440px) {
+		.page-canvas {
+			min-height: clamp(3000px, 303.4vw, 4370px);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.page-canvas {
+			min-height: 4370px;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			overflow-x: hidden;
+		}
+
+		.test-controls-bar {
+			width: 92%;
+			border-radius: 16px;
+			padding: 8px 12px;
+		}
+
+		.active-effect-name {
+			display: none;
+		}
+	}
+
+	/* Playable Snake Game Full Screen */
+	.snake-arena {
+		position: fixed;
+		inset: 0;
+		width: 100vw;
+		height: 100vh;
+		pointer-events: none;
+		z-index: 50;
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 70px 32px 24px 32px;
+		box-sizing: border-box;
+	}
+
+	.snake-arena.visible {
+		display: flex;
+	}
+
+	.snake-hud-top {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		font-family: 'Courier Prime', monospace;
+		font-size: 13px;
+		letter-spacing: 1.5px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.snake-score-val {
+		color: #f59794;
+		font-weight: bold;
+	}
+
+	.snake-hud-bottom {
+		font-family: 'Jost', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.35);
+		text-align: center;
+		letter-spacing: 1px;
+	}
+</style>
+
+<script is:inline>
+	(function () {
+		const dots = document.querySelectorAll('.scroll-dot');
+		const total = dots.length;
+		if (!dots || total === 0) return;
+
+		const effectBtns = document.querySelectorAll('.test-effect-btn');
+		const effectDisplay = document.getElementById('effect-name-display');
+		const replayBtn = document.getElementById('replay-btn');
+		const autoBtn = document.getElementById('auto-btn');
+		const arena = document.getElementById('snake-arena');
+		const scoreVal = document.getElementById('snake-score-val');
+
+		// Auto Mode with localStorage persistence
+		let autoMode = false;
+		try {
+			const saved = localStorage.getItem('snakeAutoMode');
+			if (saved === 'true') autoMode = true;
+		} catch (e) {}
+
+		function updateAutoBtn() {
+			if (!autoBtn) return;
+			if (autoMode) {
+				autoBtn.classList.add('active');
+				autoBtn.textContent = '🤖 Auto: ON';
+			} else {
+				autoBtn.classList.remove('active');
+				autoBtn.textContent = '🤖 Auto: OFF';
+			}
+		}
+		updateAutoBtn();
+
+		if (autoBtn) {
+			autoBtn.addEventListener('click', () => {
+				autoMode = !autoMode;
+				try {
+					localStorage.setItem('snakeAutoMode', String(autoMode));
+				} catch (e) {}
+				updateAutoBtn();
+			});
+		}
+
+		// Default to Option 5 as requested
+		let selectedEffect = 5;
+
+		const effectNames = {
+			1: 'Slot 01: (Ready for next idea)',
+			2: 'Slot 02: Page Load Entrance (Tilted Ring → Bottom Cascade)',
+			3: 'Slot 03: Swiss Dot Matrix (10×6 Architectural Grid → Smooth Dock)',
+			4: 'Slot 04: Infinity Loop (Figure-8 Flow → Smooth Dock to Scrollbar)',
+			5: 'Slot 05: Playable Snake Game (Full Screen + Auto AI)',
+			6: 'Slot 06: (Ready)',
+			7: 'Slot 07: (Ready)',
+			8: 'Slot 08: (Ready)',
+			9: 'Slot 09: (Ready)',
+		};
+
+		// Entrance animation state
+		let entranceStartTime = performance.now();
+		let entranceActive = true;
+
+		function startEntrance() {
+			entranceStartTime = performance.now();
+			entranceActive = true;
+		}
+
+		// Playable Snake Game Full Screen State
+		const gridSize = 24; // px per grid cell
+		let cols = Math.max(10, Math.floor((window.innerWidth - 60) / gridSize));
+		let rows = Math.max(8, Math.floor((window.innerHeight - 100) / gridSize));
+
+		function updateGridDimensions() {
+			cols = Math.max(10, Math.floor((window.innerWidth - 60) / gridSize));
+			rows = Math.max(8, Math.floor((window.innerHeight - 100) / gridSize));
+		}
+		window.addEventListener('resize', updateGridDimensions);
+
+		let snake = [
+			{ col: Math.floor(cols / 2), row: Math.floor(rows / 2) },
+			{ col: Math.floor(cols / 2) - 1, row: Math.floor(rows / 2) },
+			{ col: Math.floor(cols / 2) - 2, row: Math.floor(rows / 2) },
+			{ col: Math.floor(cols / 2) - 3, row: Math.floor(rows / 2) },
+			{ col: Math.floor(cols / 2) - 4, row: Math.floor(rows / 2) },
+		];
+		let dir = { x: 1, y: 0 };
+		let nextDir = { x: 1, y: 0 };
+		let food = { col: Math.floor(cols / 2) + 6, row: Math.floor(rows / 2) };
+		let score = 0;
+		let lastStepTime = 0;
+		const stepInterval = 115; // ms per step
+
+		function spawnFood() {
+			let attempts = 0;
+			while (attempts < 200) {
+				const c = Math.floor(Math.random() * cols);
+				const r = Math.floor(Math.random() * rows);
+				const onSnake = snake.some((seg) => seg.col === c && seg.row === r);
+				if (!onSnake) {
+					food = { col: c, row: r };
+					return;
+				}
+				attempts++;
+			}
+			food = { col: (food.col + 3) % cols, row: (food.row + 3) % rows };
+		}
+
+		function resetSnakeGame() {
+			updateGridDimensions();
+			const startCol = Math.floor(cols / 2);
+			const startRow = Math.floor(rows / 2);
+			snake = [
+				{ col: startCol, row: startRow },
+				{ col: startCol - 1, row: startRow },
+				{ col: startCol - 2, row: startRow },
+				{ col: startCol - 3, row: startRow },
+				{ col: startCol - 4, row: startRow },
+			];
+			dir = { x: 1, y: 0 };
+			nextDir = { x: 1, y: 0 };
+			score = 0;
+			if (scoreVal) scoreVal.textContent = '0';
+			spawnFood();
+		}
+
+		// AI Auto-Pilot Pathfinding (Safe BFS with toroidal wrap-around)
+		function computeNextAiMove() {
+			const head = snake[0];
+			const validMoves = [
+				{ x: 0, y: -1 }, // Up
+				{ x: 0, y: 1 },  // Down
+				{ x: -1, y: 0 }, // Left
+				{ x: 1, y: 0 },  // Right
+			].filter((m) => !(m.x === -dir.x && m.y === -dir.y));
+
+			function isOccupied(c, r, ignoreTail = true) {
+				const len = ignoreTail ? snake.length - 1 : snake.length;
+				for (let s = 0; s < len; s++) {
+					if (snake[s].col === c && snake[s].row === r) return true;
+				}
+				return false;
+			}
+
+			// BFS shortest path to food
+			function bfs(start, dest) {
+				const queue = [{ col: start.col, row: start.row, path: [] }];
+				const visited = new Set();
+				visited.add(`${start.col},${start.row}`);
+
+				while (queue.length > 0) {
+					const curr = queue.shift();
+					if (curr.col === dest.col && curr.row === dest.row) {
+						return curr.path;
+					}
+
+					for (const m of validMoves) {
+						const nc = (curr.col + m.x + cols) % cols;
+						const nr = (curr.row + m.y + rows) % rows;
+						const key = `${nc},${nr}`;
+
+						if (!visited.has(key) && !isOccupied(nc, nr, true)) {
+							visited.add(key);
+							queue.push({ col: nc, row: nr, path: [...curr.path, m] });
+						}
+					}
+				}
+				return null;
+			}
+
+			const pathToFood = bfs(head, food);
+
+			if (pathToFood && pathToFood.length > 0) {
+				const firstMove = pathToFood[0];
+				const nc = (head.col + firstMove.x + cols) % cols;
+				const nr = (head.row + firstMove.y + rows) % rows;
+				if (!isOccupied(nc, nr, false)) {
+					return firstMove;
+				}
+			}
+
+			// Survival Fallback: pick the move with the most open freedom to avoid collision
+			let bestMove = null;
+			let maxFreedom = -1;
+
+			for (const m of validMoves) {
+				const nc = (head.col + m.x + cols) % cols;
+				const nr = (head.row + m.y + rows) % rows;
+
+				if (!isOccupied(nc, nr, false)) {
+					let freedom = 0;
+					for (const nm of validMoves) {
+						const nnc = (nc + nm.x + cols) % cols;
+						const nnr = (nr + nm.y + rows) % rows;
+						if (!isOccupied(nnc, nnr, false)) freedom++;
+					}
+					if (freedom > maxFreedom) {
+						maxFreedom = freedom;
+						bestMove = m;
+					}
+				}
+			}
+
+			return bestMove || dir;
+		}
+
+		// Keyboard Controls for Snake
+		window.addEventListener('keydown', (e) => {
+			if (selectedEffect !== 5) return;
+
+			// Prevent arrow keys and space from scrolling while playing!
+			if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+				e.preventDefault();
+			}
+
+			if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && dir.y === 0) {
+				nextDir = { x: 0, y: -1 };
+			} else if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && dir.y === 0) {
+				nextDir = { x: 0, y: 1 };
+			} else if ((e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') && dir.x === 0) {
+				nextDir = { x: -1, y: 0 };
+			} else if ((e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') && dir.x === 0) {
+				nextDir = { x: 1, y: 0 };
+			} else if (e.key === ' ' || e.key === 'Spacebar') {
+				resetSnakeGame();
+			}
+		});
+
+		if (replayBtn) {
+			replayBtn.addEventListener('click', () => {
+				if (selectedEffect === 5) {
+					resetSnakeGame();
+				} else {
+					startEntrance();
+				}
+			});
+		}
+
+		effectBtns.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				effectBtns.forEach((b) => b.classList.remove('active'));
+				btn.classList.add('active');
+				selectedEffect = parseInt(btn.dataset.effect, 10);
+				if (effectDisplay) {
+					effectDisplay.textContent = effectNames[selectedEffect] || `Slot 0${selectedEffect}`;
+				}
+				if (selectedEffect === 5) {
+					if (arena) arena.classList.add('visible');
+					resetSnakeGame();
+				} else {
+					if (arena) arena.classList.remove('visible');
+					startEntrance();
+				}
+			});
+		});
+
+		// Scroll state
+		let targetIndex = 0;
+		let currentIndex = 0;
+
+		function getMaxScroll() {
+			return document.documentElement.scrollHeight - window.innerHeight;
+		}
+
+		function getTargetIndex() {
+			const maxScroll = getMaxScroll();
+			const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+			return progress * (total - 1);
+		}
+
+		window.addEventListener(
+			'scroll',
+			() => {
+				targetIndex = getTargetIndex();
+			},
+			{ passive: true }
+		);
+
+		dots.forEach((dot, i) => {
+			dot.addEventListener('click', () => {
+				const maxScroll = getMaxScroll();
+				const targetY = (i / (total - 1)) * maxScroll;
+				window.scrollTo({ top: targetY, behavior: 'smooth' });
+			});
+		});
+
+		// Luxurious smoothstep easing for classic, calm movement
+		function smoothstep(t) {
+			const clamped = Math.max(0, Math.min(1, t));
+			return clamped * clamped * (3 - 2 * clamped);
+		}
+
+		function easeOutQuart(t) {
+			const clamped = Math.max(0, Math.min(1, t));
+			return 1 - Math.pow(1 - clamped, 4);
+		}
+
+		// Main render loop
+		function render() {
+			const now = performance.now();
+			const diff = targetIndex - currentIndex;
+			currentIndex += diff * 0.12;
+
+			if (selectedEffect === 5) {
+				renderSnakeGame(now);
+			} else if (selectedEffect === 4) {
+				renderInfinityLoop(now);
+			} else if (selectedEffect === 3) {
+				renderSwissDotMatrix(now);
+			} else if (selectedEffect === 2) {
+				renderOption2(now);
+			} else {
+				renderStandardScrollbar();
+			}
+
+			requestAnimationFrame(render);
+		}
+
+		// OPTION 5: PLAYABLE SNAKE GAME (CONTINUOUS INTERACTIVE GAMEPLAY)
+		function renderSnakeGame(now) {
+			if (arena) arena.classList.add('visible');
+
+			// Step snake on timer interval
+			if (now - lastStepTime > stepInterval) {
+				lastStepTime = now;
+				if (autoMode) {
+					nextDir = computeNextAiMove();
+				}
+				dir = nextDir;
+				const head = snake[0];
+				const newHead = {
+					col: (head.col + dir.x + cols) % cols,
+					row: (head.row + dir.y + rows) % rows,
+				};
+
+				// Self collision check
+				let selfHit = false;
+				for (let s = 0; s < snake.length; s++) {
+					if (snake[s].col === newHead.col && snake[s].row === newHead.row) {
+						selfHit = true;
+						break;
+					}
+				}
+
+				if (selfHit) {
+					resetSnakeGame();
+					return;
+				}
+
+				// Food collision
+				if (newHead.col === food.col && newHead.row === food.row) {
+					score++;
+					if (scoreVal) scoreVal.textContent = String(score);
+					snake.unshift(newHead);
+					if (snake.length > total - 1) {
+						snake.pop(); // Max 59 body dots (1 dot for food = 60 total)
+					}
+					spawnFood();
+				} else {
+					snake.pop();
+					snake.unshift(newHead);
+				}
+			}
+
+			const toCenterX = -(window.innerWidth / 2 - 6);
+
+			// Render all 60 dots:
+			// Dot 0 is the Food Dot (pulsing red)
+			// Dots 1 to snake.length are snake segments (white)
+			// Unused dots are hidden
+			dots.forEach((dot, i) => {
+				const naturalY = i * 10 - (total - 1) * 5;
+
+				if (i === 0) {
+					// Red Food Dot
+					const rx = (food.col - (cols - 1) / 2) * gridSize;
+					const ry = (food.row - (rows - 1) / 2) * gridSize;
+					const finalX = toCenterX + rx;
+					const finalY = ry - naturalY;
+
+					const pulse = 1.45 + Math.sin(now * 0.008) * 0.3;
+					dot.style.transform = `translate(${finalX.toFixed(1)}px, ${finalY.toFixed(1)}px) scale(${pulse.toFixed(2)})`;
+					dot.style.opacity = '1';
+					dot.style.backgroundColor = '#f59794';
+					dot.style.boxShadow = '0 0 14px rgba(245, 151, 148, 0.95)';
+					dot.classList.remove('active');
+				} else {
+					const segIndex = i - 1;
+					if (segIndex < snake.length) {
+						// Snake body segment
+						const seg = snake[segIndex];
+						const rx = (seg.col - (cols - 1) / 2) * gridSize;
+						const ry = (seg.row - (rows - 1) / 2) * gridSize;
+						const finalX = toCenterX + rx;
+						const finalY = ry - naturalY;
+
+						const isHead = segIndex === 0;
+						const scale = isHead ? 1.5 : 1.2;
+						dot.style.transform = `translate(${finalX.toFixed(1)}px, ${finalY.toFixed(1)}px) scale(${scale})`;
+						dot.style.opacity = '1';
+						dot.style.backgroundColor = isHead ? '#ffffff' : 'rgba(255, 255, 255, 0.85)';
+						dot.style.boxShadow = isHead ? '0 0 10px rgba(255, 255, 255, 0.85)' : 'none';
+						dot.classList.remove('active');
+					} else {
+						// Unused dots hidden
+						dot.style.opacity = '0';
+						dot.style.transform = 'scale(0)';
+						dot.style.boxShadow = 'none';
+						dot.classList.remove('active');
+					}
+				}
+			});
+		}
+
+		// OPTION 4: INFINITE LOOP (HORIZONTAL LEMNISCATE FIGURE-8 → SMOOTH DOCK)
+		function renderInfinityLoop(now) {
+			const elapsed = (now - entranceStartTime) / 1000;
+			const toCenterX = -(window.innerWidth / 2 - 6);
+
+			// Timings:
+			// 0s to 1.8s: Dots flow in an infinite horizontal figure-8 loop
+			// 1.8s to 3.0s: Stream off sequentially from bottom to top and dock to the right scrollbar
+			// 3.0s+: Clean live interactive scrollbar
+			const loopDuration = 1.7;
+			const flightDuration = 0.95;
+			const totalStagger = 0.75;
+
+			// Horizontal infinity loop dimensions (width significantly larger than height)
+			const radiusX = Math.min(230, window.innerWidth * 0.28); // e.g. 460px wide
+			const radiusY = Math.min(85, window.innerHeight * 0.13); // e.g. 170px tall (width : height ~ 2.7:1)
+			const loopSpeed = 2.4; // smooth flow speed
+
+			let allLanded = true;
+
+			dots.forEach((dot, i) => {
+				const naturalY = i * 10 - (total - 1) * 5;
+
+				// Position along the infinity track:
+				const dotAngle = (i / total) * Math.PI * 2 + elapsed * loopSpeed;
+				const startX = toCenterX + Math.cos(dotAngle) * radiusX;
+				const startY = Math.sin(2 * dotAngle) * radiusY - naturalY;
+
+				// Trailing scale & opacity along the loop (matching the user's reference)
+				const relIndex = (i - Math.round(elapsed * loopSpeed * 10)) % total;
+				const trailNormalized = (((relIndex % total) + total) % total) / total;
+				const startScale = 0.9 + (1 - trailNormalized) * 0.6;
+				const startOpacity = 0.35 + (1 - trailNormalized) * 0.65;
+
+				// Normal docked position on right edge
+				const normalDist = Math.abs(i - currentIndex);
+				const isCurrentActive = i === Math.round(currentIndex);
+				const normalX = Math.min(0, normalDist * normalDist * 1.5 - 4);
+				const normalY = 0;
+				const normalScale = isCurrentActive ? 2.2 : 1.0;
+				const normalOpacity = 1.0;
+
+				// Docking order: Bottom-most dot (59) leaves first to bottom slot, dot 0 leaves last
+				const reverseIndex = (total - 1) - i;
+				const dotDelay = loopDuration + (reverseIndex / (total - 1)) * totalStagger;
+
+				let progress = 0;
+				if (elapsed < dotDelay) {
+					progress = 0;
+					allLanded = false;
+				} else if (elapsed < dotDelay + flightDuration) {
+					const t = (elapsed - dotDelay) / flightDuration;
+					progress = easeOutQuart(t);
+					allLanded = false;
+				} else {
+					progress = 1;
+				}
+
+				const currentX = startX * (1 - progress) + normalX * progress;
+				const currentY = startY * (1 - progress) + normalY * progress;
+				const currentScale = startScale * (1 - progress) + normalScale * progress;
+				const currentOpacity = startOpacity * (1 - progress) + normalOpacity * progress;
+
+				dot.style.transform = `translate(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px) scale(${currentScale.toFixed(2)})`;
+				dot.style.opacity = currentOpacity.toFixed(2);
+
+				// Exactly ONE single glowing red/pink dot at the active position
+				if (progress < 0.96) {
+					if (isCurrentActive) {
+						dot.style.backgroundColor = '#f59794';
+						dot.style.boxShadow = '0 0 10px rgba(245, 151, 148, 0.85)';
+					} else {
+						dot.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+						dot.style.boxShadow = 'none';
+					}
+				} else {
+					dot.style.backgroundColor = '';
+					dot.style.boxShadow = '';
+					dot.classList.toggle('active', isCurrentActive);
+				}
+			});
+
+			if (allLanded && entranceActive) {
+				entranceActive = false;
+			}
+		}
+
+		// OPTION 3: SWISS DOT MATRIX (10×6 ARCHITECTURAL GRID → SMOOTH DOCK)
+		function renderSwissDotMatrix(now) {
+			const elapsed = (now - entranceStartTime) / 1000; // in seconds
+			const toCenterX = -(window.innerWidth / 2 - 6);
+
+			// Timings:
+			// 0s to 0.75s: Serene stillness in 10x6 architectural matrix
+			// 0.75s to 2.4s: Silky unspool from bottom-right up to scrollbar
+			// 2.4s+: Clean live interactive scrollbar
+			const holdDuration = 0.75;
+			const flightDuration = 0.95;
+
+			const cols = 6;
+			const rows = 10;
+			const gapX = 22; // px spacing between columns
+			const gapY = 22; // px spacing between rows
+
+			let allLanded = true;
+
+			dots.forEach((dot, i) => {
+				const naturalY = i * 10 - (total - 1) * 5;
+
+				// Exact grid row and column for this dot
+				const col = i % cols;
+				const row = Math.floor(i / cols);
+
+				// Centered grid coordinates
+				const startX = toCenterX + (col - (cols - 1) / 2) * gapX;
+				const startY = (row - (rows - 1) / 2) * gapY - naturalY;
+				const startScale = 1.0;
+				const startOpacity = 0.75 + Math.sin(Math.min(1, elapsed / holdDuration) * Math.PI) * 0.15;
+
+				// Normal docked position on right edge
+				const normalDist = Math.abs(i - currentIndex);
+				const isCurrentActive = i === Math.round(currentIndex);
+				const normalX = Math.min(0, normalDist * normalDist * 1.5 - 4);
+				const normalY = 0;
+				const normalScale = isCurrentActive ? 2.2 : 1.0;
+				const normalOpacity = 1.0;
+
+				// Docking order: Bottom-most row leaves first, unzipping column by column
+				const reverseRow = (rows - 1) - row;
+				const reverseCol = (cols - 1) - col;
+				const dotDelay = holdDuration + (reverseRow / (rows - 1)) * 0.45 + (reverseCol / (cols - 1)) * 0.25;
+
+				let progress = 0;
+				if (elapsed < dotDelay) {
+					progress = 0;
+					allLanded = false;
+				} else if (elapsed < dotDelay + flightDuration) {
+					const t = (elapsed - dotDelay) / flightDuration;
+					progress = easeOutQuart(t);
+					allLanded = false;
+				} else {
+					progress = 1;
+				}
+
+				const currentX = startX * (1 - progress) + normalX * progress;
+				const currentY = startY * (1 - progress) + normalY * progress;
+				const currentScale = startScale * (1 - progress) + normalScale * progress;
+				const currentOpacity = startOpacity * (1 - progress) + normalOpacity * progress;
+
+				dot.style.transform = `translate(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px) scale(${currentScale.toFixed(2)})`;
+				dot.style.opacity = currentOpacity.toFixed(2);
+
+				// Pure minimal styling: Exactly ONE single quiet red dot (the active indicator), all others clean crisp white
+				if (progress < 0.96) {
+					if (isCurrentActive) {
+						dot.style.backgroundColor = '#f59794';
+						dot.style.boxShadow = '0 0 8px rgba(245, 151, 148, 0.7)';
+					} else {
+						dot.style.backgroundColor = 'rgba(255, 255, 255, 0.75)';
+						dot.style.boxShadow = 'none';
+					}
+				} else {
+					dot.style.backgroundColor = '';
+					dot.style.boxShadow = '';
+					dot.classList.toggle('active', isCurrentActive);
+				}
+			});
+
+			if (allLanded && entranceActive) {
+				entranceActive = false;
+			}
+		}
+
+		// OPTION 2: Ring from previous iteration (for comparison)
+		function renderOption2(now) {
+			const elapsed = (now - entranceStartTime) / 1000;
+			const toCenterX = -(window.innerWidth / 2 - 6);
+			const holdDuration = 0.6;
+			const flightDuration = 0.9;
+			const totalStagger = 0.8;
+			let allLanded = true;
+
+			dots.forEach((dot, i) => {
+				const naturalY = i * 10 - (total - 1) * 5;
+				const phi = (i / total) * Math.PI * 2;
+				const orbitRadius = Math.min(160, window.innerWidth * 0.2);
+				const tiltY = 0.55;
+
+				const startX = toCenterX + Math.cos(phi + elapsed * 1.5) * orbitRadius;
+				const startY = Math.sin(phi + elapsed * 1.5) * (orbitRadius * tiltY) - naturalY;
+				const startScale = 1.4 + Math.sin(phi + elapsed * 2) * 0.4;
+				const startOpacity = 0.7 + Math.sin(phi + elapsed * 2) * 0.3;
+
+				const normalDist = Math.abs(i - currentIndex);
+				const isCurrentActive = i === Math.round(currentIndex);
+				const normalX = Math.min(0, normalDist * normalDist * 1.5 - 4);
+				const normalY = 0;
+				const normalScale = isCurrentActive ? 2.2 : 1.0;
+				const normalOpacity = 1.0;
+
+				const reverseIndex = (total - 1) - i;
+				const dotDelay = holdDuration + (reverseIndex / (total - 1)) * totalStagger;
+
+				let progress = 0;
+				if (elapsed < dotDelay) {
+					progress = 0;
+					allLanded = false;
+				} else if (elapsed < dotDelay + flightDuration) {
+					const t = (elapsed - dotDelay) / flightDuration;
+					progress = easeOutQuart(t);
+					allLanded = false;
+				} else {
+					progress = 1;
+				}
+
+				const currentX = startX * (1 - progress) + normalX * progress;
+				const currentY = startY * (1 - progress) + normalY * progress;
+				const currentScale = startScale * (1 - progress) + normalScale * progress;
+				const currentOpacity = startOpacity * (1 - progress) + normalOpacity * progress;
+
+				dot.style.transform = `translate(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px) scale(${currentScale.toFixed(2)})`;
+				dot.style.opacity = currentOpacity.toFixed(2);
+
+				if (progress < 0.95) {
+					if (isCurrentActive) {
+						dot.style.backgroundColor = '#f59794';
+						dot.style.boxShadow = '0 0 10px rgba(245, 151, 148, 0.8)';
+					} else {
+						dot.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+						dot.style.boxShadow = 'none';
+					}
+				} else {
+					dot.style.backgroundColor = '';
+					dot.style.boxShadow = '';
+					dot.classList.toggle('active', isCurrentActive);
+				}
+			});
+
+			if (allLanded && entranceActive) {
+				entranceActive = false;
+			}
+		}
+
+		// Standard clean scrollbar
+		function renderStandardScrollbar() {
+			const activeIndex = Math.round(currentIndex);
+			dots.forEach((dot, i) => {
+				const isActive = i === activeIndex;
+				const dist = Math.abs(i - currentIndex);
+				const xOffset = Math.min(0, dist * dist * 1.5 - 4);
+				const scale = isActive ? 2.2 : 1;
+				dot.style.transform = `translateX(${xOffset}px) scale(${scale})`;
+				dot.style.opacity = '1';
+				dot.style.backgroundColor = '';
+				dot.style.boxShadow = '';
+				dot.classList.toggle('active', isActive);
+			});
+		}
+
+		// Init
+		targetIndex = getTargetIndex();
+		currentIndex = targetIndex;
+		render();
+	})();
+</script>
